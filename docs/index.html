@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deprescribing Quick Reference Guide | Clinical Pharmacist Tool</title>
+<style>
+  :root {
+    --slate: #1e3a5f;
+    --slate-dark: #152b47;
+    --slate-light: #2d527a;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --teal-pale: #ccfbf1;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --amber: #d97706;
+    --amber-pale: #fef3c7;
+    --red: #dc2626;
+    --red-pale: #fee2e2;
+    --purple: #7c3aed;
+    --purple-pale: #ede9fe;
+    --green: #16a34a;
+    --green-pale: #dcfce7;
+    --blue: #2563eb;
+    --blue-pale: #dbeafe;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 4px 10px rgba(0,0,0,0.06);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--gray-100);
+    color: var(--gray-800);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ─── HEADER ─────────────────────────────────────────── */
+  .app-header {
+    background: linear-gradient(135deg, var(--slate-dark) 0%, var(--slate) 60%, var(--slate-light) 100%);
+    color: var(--white);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--teal);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .header-title h1 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .header-title p {
+    font-size: 0.72rem;
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .btn-print {
+    background: var(--teal);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .btn-print:hover { background: var(--teal-light); transform: translateY(-1px); }
+  .btn-print:active { transform: translateY(0); }
+
+  .search-bar-wrapper {
+    padding: 12px 24px 14px;
+  }
+
+  .search-container {
+    position: relative;
+    max-width: 700px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-400);
+    font-size: 15px;
+    pointer-events: none;
+  }
+
+  #searchInput {
+    width: 100%;
+    padding: 11px 44px 11px 42px;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+  #searchInput:focus {
+    border-color: var(--teal-light);
+    background: rgba(255,255,255,0.15);
+  }
+
+  .search-clear {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    font-size: 16px;
+    display: none;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: color 0.2s;
+  }
+
+  .search-clear:hover { color: white; }
+
+  /* ─── LAYOUT ─────────────────────────────────────────── */
+  .main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--slate-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .section-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .section-divider {
+    width: 40px;
+    height: 3px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  /* ─── SEARCH RESULTS ─────────────────────────────────── */
+  #searchResults {
+    display: none;
+    margin-bottom: 28px;
+  }
+
+  #searchResults.active { display: block; }
+
+  .search-results-header {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    margin-bottom: 12px;
+    padding: 0 2px;
+  }
+
+  .search-results-header span {
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  .result-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--teal);
+    transition: box-shadow 0.2s, transform 0.1s;
+  }
+
+  .result-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(2px);
+  }
+
+  .result-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .result-medicine {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--slate-dark);
+  }
+
+  .result-category {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--teal-pale);
+    color: var(--teal);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .result-grid { grid-template-columns: 1fr; }
+  }
+
+  .result-field {
+    background: var(--gray-50);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+  }
+
+  .result-field-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+  }
+
+  .result-field-value {
+    font-size: 0.82rem;
+    color: var(--gray-700);
+    line-height: 1.5;
+  }
+
+  .result-evidence {
+    margin-top: 10px;
+    font-size: 0.75rem;
+    color: var(--teal);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .no-results-icon { font-size: 2.5rem; margin-bottom: 10px; }
+  .no-results h3 { color: var(--gray-700); font-size: 1rem; margin-bottom: 6px; }
+  .no-results p { color: var(--gray-400); font-size: 0.85rem; }
+
+  /* ─── 5Ms SECTION ────────────────────────────────────── */
+  .fivems-section { margin-bottom: 32px; }
+
+  .fivems-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .fivems-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 580px) {
+    .fivems-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .m-card {
+    border-radius: var(--radius);
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s, transform 0.15s;
+    background: var(--white);
+    border: 2px solid transparent;
+  }
+
+  .m-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .m-card.active {
+    box-shadow: var(--shadow-md);
+    border-color: var(--card-color);
+  }
+
+  .m-card-header {
+    padding: 18px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .m-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    transition: transform 0.2s;
+  }
+
+  .m-card:hover .m-icon { transform: scale(1.08); }
+
+  .m-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 2px;
+  }
+
+  .m-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--slate-dark);
+    line-height: 1.2;
+  }
+
+  .m-chevron {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 12px;
+    color: var(--gray-400);
+    transition: transform 0.25s;
+  }
+
+  .m-card.active .m-chevron { transform: rotate(180deg); }
+
+  .m-card-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--gray-200);
+    margin-top: 2px;
+  }
+
+  .m-card.active .m-card-body { display: block; }
+
+  .m-subtitle {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 12px 0 6px;
+    opacity: 0.7;
+  }
+
+  .m-trigger {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-bottom: 5px;
+    font-size: 0.78rem;
+    color: var(--gray-700);
+    line-height: 1.4;
+  }
+
+  .m-trigger::before {
+    content: "▶";
+    font-size: 7px;
+    color: var(--card-color);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  /* ─── 8-STEP SECTION ─────────────────────────────────── */
+  .steps-section { margin-bottom: 32px; }
+
+  .steps-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .step-item {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    transition: box-shadow 0.2s;
+  }
+
+  .step-item:hover { box-shadow: var(--shadow-md); }
+
+  .step-item.active {
+    box-shadow: var(--shadow-md);
+    border-color: var(--teal);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+
+  .step-header:hover { background: var(--gray-50); }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--slate-dark);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .step-item.active .step-number { background: var(--teal); }
+
+  .step-meta { flex: 1 }
+
+  .step-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--slate-dark);
+    margin-bottom: 1px;
+  }
+
+  .step-subtitle {
+    font-size: 0.72rem;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+
+  .step-phase {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .step-chevron {
+    color: var(--gray-400);
+    font-size: 13px;
+    transition: transform 0.25s;
+  }
+
+  .step-item.active .step-chevron { transform: rotate(180deg); color: var(--teal); }
+
+  .step-body {
+    display: none;
+    padding: 0 18px 18px;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .step-item.active .step-body { display: block; }
+
+  .step-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  @media (max-width: 700px) {
+    .step-body-grid { grid-template-columns: 1fr; }
+  }
+
+  .step-field {
+    background: var(--gray-50);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+  }
+
+  .step-field-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .step-field ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .step-field ul li {
+    font-size: 0.81rem;
+    color: var(--gray-700);
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.45;
+  }
+
+  .step-field ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-weight: bold;
+  }
+
+  .step-field p {
+    font-size: 0.81rem;
+    color: var(--gray-700);
+    line-height: 1.5;
+  }
+
+  .step-field.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .step-chapter-ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: var(--blue-pale);
+    color: var(--blue);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  .step-ipc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    margin: 2px;
+  }
+
+  .ipc-gp { background: var(--green-pale); color: var(--green); }
+  .ipc-nurse { background: var(--purple-pale); color: var(--purple); }
+  .ipc-pharmacist { background: var(--teal-pale); color: var(--teal); }
+  .ipc-patient { background: var(--amber-pale); color: var(--amber); }
+  .ipc-specialist { background: var(--blue-pale); color: var(--blue); }
+  .ipc-allied { background: var(--red-pale); color: var(--red); }
+
+  .ipc-tags { margin-top: 6px; }
+
+  /* ─── DATABASE SECTION ───────────────────────────────── */
+  .database-section { margin-bottom: 32px; }
+
+  .db-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .db-filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--gray-200);
+    background: var(--white);
+    color: var(--gray-600);
+    font-size: 0.77rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .filter-btn.active { border-color: var(--teal); background: var(--teal); color: white; }
+
+  .db-count {
+    font-size: 0.78rem;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+
+  .db-count span { color: var(--teal); font-weight: 700; }
+
+  .db-table-wrapper {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+
+  .db-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .db-table thead tr {
+    background: var(--slate-dark);
+    color: white;
+  }
+
+  .db-table th {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .db-table tbody tr {
+    border-bottom: 1px solid var(--gray-100);
+    transition: background 0.1s;
+  }
+
+  .db-table tbody tr:last-child { border-bottom: none; }
+  .db-table tbody tr:hover { background: var(--gray-50); }
+
+  .db-table td {
+    padding: 12px 14px;
+    vertical-align: top;
+    color: var(--gray-700);
+    line-height: 1.45;
+  }
+
+  .db-table td:first-child { font-weight: 600; color: var(--slate-dark); }
+
+  .cat-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .evidence-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: var(--green-pale);
+    color: var(--green);
+  }
+
+  /* ─── PRINT STYLES ───────────────────────────────────── */
+  @media print {
+    body { background: white; font-size: 11px; }
+    .app-header { position: static; box-shadow: none; }
+    .search-bar-wrapper, .btn-print, .header-actions { display: none !important; }
+    .main-content { padding: 10px; max-width: 100%; }
+    .m-card-body { display: block !important; }
+    .step-body { display: block !important; }
+    .m-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    .step-item { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    .fivems-grid { grid-template-columns: repeat(3, 1fr); }
+    .section-header { margin-top: 16px; }
+    .db-table-wrapper { box-shadow: none; border: 1px solid #ccc; }
+    #searchResults { display: none !important; }
+  }
+
+  /* ─── UTILITIES ──────────────────────────────────────── */
+  .highlight {
+    background: #fef08a;
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+
+  .section-intro {
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    margin-bottom: 16px;
+    line-height: 1.55;
+    max-width: 800px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .info-bar {
+    background: var(--teal-pale);
+    border: 1px solid rgba(13,148,136,0.2);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    color: var(--teal);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .info-bar svg { flex-shrink: 0; margin-top: 1px; }
+</style>
+</head>
+<body>
+
+<!-- ─── APP HEADER ─────────────────────────────────────────────── -->
+<header class="app-header" role="banner">
+  <div class="header-top">
+    <div class="header-brand">
+      <div class="header-icon" aria-hidden="true">💊</div>
+      <div class="header-title">
+        <h1>Deprescribing Quick Reference Guide</h1>
+        <p>Australian Clinical Pharmacist Tool · Hospital Rounds &amp; HMR/RMMR</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span class="badge">AUS Guidelines</span>
+      <span class="badge">v2025.1</span>
+      <button class="btn-print" onclick="window.print()" aria-label="Print this guide">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print Guide
+      </button>
+    </div>
+  </div>
+  <div class="search-bar-wrapper">
+    <div class="search-container">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search medicines, drug classes, categories... (e.g. PPI, benzodiazepine, antihypertensive)"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search medicines database"
+      />
+      <button class="search-clear" id="searchClear" aria-label="Clear search" title="Clear">✕</button>
+    </div>
+  </div>
+</header>
+
+<!-- ─── MAIN CONTENT ───────────────────────────────────────────── -->
+<main class="main-content" role="main">
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>This tool supports shared decision-making and does not replace clinical judgement. Always consider individual patient goals, life expectancy, and care setting. Developed for use within the Australian Pharmaceutical Benefits Scheme (PBS) framework.</span>
+  </div>
+
+  <!-- ─── SEARCH RESULTS ─────────────────────────────────────── -->
+  <section id="searchResults" aria-live="polite" aria-label="Search results">
+    <div class="section-header">
+      <h2>🔎 Search Results</h2>
+    </div>
+    <div id="searchResultsBody"></div>
+  </section>
+
+  <!-- ─── 5Ms SECTION ────────────────────────────────────────── -->
+  <section class="fivems-section" aria-label="5Ms Clinical Priorities">
+    <div class="section-header">
+      <h2>The 5Ms Framework</h2>
+      <span class="section-badge" style="background:var(--slate-dark);color:white">When to Deprescribe</span>
+    </div>
+    <div class="section-divider" style="background:var(--slate-dark)"></div>
+    <p class="section-intro">
+      The 5Ms (developed by the Age-Friendly Health Systems initiative) provide a geriatric framework for identifying deprescribing triggers. Click each card to expand clinical indicators and red flags.
+    </p>
+    <div class="fivems-grid" id="fiveMsGrid">
+      <!-- Cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- ─── 8-STEP SECTION ────────────────────────────────────── -->
+  <section class="steps-section" aria-label="8-Step Deprescribing Process">
+    <div class="section-header">
+      <h2>8-Step Deprescribing Process</h2>
+      <span class="section-badge" style="background:var(--teal);color:white">How to Deprescribe</span>
+    </div>
+    <div class="section-divider" style="background:var(--teal)"></div>
+    <p class="section-intro">
+      A structured, evidence-based workflow for safely tapering or ceasing medications in hospital and community settings. Click each step for detailed actions, chapter references, and interprofessional consultation (IPC) protocols.
+    </p>
+    <div class="steps-accordion" id="stepsAccordion">
+      <!-- Steps injected by JS -->
+    </div>
+  </section>
+
+  <!-- ─── MEDICINE DATABASE ─────────────────────────────────── -->
+  <section class="database-section" aria-label="Medicine Database">
+    <div class="section-header">
+      <h2>Medicine Deprescribing Database</h2>
+      <span class="section-badge" style="background:var(--gray-700);color:white">Reference</span>
+    </div>
+    <div class="section-divider" style="background:var(--gray-700)"></div>
+    <p class="section-intro">
+      Pre-populated evidence-based deprescribing entries aligned with Australian clinical guidelines, STOPP/START criteria, and the Beers Criteria. Use the search bar above for instant filtering.
+    </p>
+    <div class="db-controls">
+      <div class="db-filter-row" id="categoryFilters"></div>
+      <div class="db-count">Showing <span id="dbCountShown">0</span> of <span id="dbCountTotal">0</span> entries</div>
+    </div>
+    <div class="db-table-wrapper">
+      <table class="db-table" aria-label="Deprescribing database">
+        <thead>
+          <tr>
+            <th>Medicine / Drug Class</th>
+            <th>When to Deprescribe</th>
+            <th>How to Deprescribe</th>
+            <th>Monitoring</th>
+            <th>Evidence</th>
+          </tr>
+        </thead>
+        <tbody id="dbTableBody">
+          <!-- Rows injected by JS -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script>
+'use strict';
+
+/* ═══════════════════════════════════════════════════════════════
+   CORE DATABASE — deprescribingData
+   Schema: { category, medicine, when, how, monitoring, evidence }
+═══════════════════════════════════════════════════════════════ */
+const deprescribingData = [
+  {
+    category: "General",
+    medicine: "Polypharmacy / Multiple Drug Classes",
+    when: "No clear indication, obvious contraindication, or inappropriate prescribing cascade; adverse effects or interactions outweigh the potential benefits; used for symptomatic relief where symptoms are resolved and unlikely to recur; or used for prevention when the potential benefits are uncertain or unlikely to be realised.",
+    how: "Develop an individualised deprescribing plan. For medicines where adverse drug withdrawal events (ADWEs) or disease recurrence are likely, taper the dose by halving it at 2-4 week intervals until half of the lowest standard dose formulation is reached, then cease. Consider switching from regular to PRN dosing. Up to three medicines may be deprescribed simultaneously if practical and unlikely to cause ADWEs.",
+    monitoring: "Closely monitor for ADWEs and health-related outcomes every 2 weeks following each dose adjustment until at least 4 weeks after the medicine is fully discontinued. Then monitor monthly for 3 months, followed by 6-monthly thereafter.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Gastrointestinal",
+    medicine: "Proton Pump Inhibitors / PPIs (Omeprazole, Esomeprazole, Pantoprazole, Lansoprazole)",
+    when: "After short-term indication: GORD (4-8 weeks), peptic ulcer disease (4-8 weeks), H. pylori eradication (2 weeks), ICU stress ulcer prophylaxis (upon ICU discharge). Also reassess if: no clear indication; frail older adult with CKD (hypomagnesaemia, C. difficile, bone fracture, pneumonia risk); NSAID cover where NSAID can be ceased; or PPI prescribed as part of a prescribing cascade.",
+    how: "Step-down tapering: omeprazole 40mg -> 20mg -> 10mg every 2 weeks (do not crush enteric-coated tablets). After step-down, trial on-demand use (maximum 4 weeks). Can use H2RA (famotidine 20mg BD) as bridge. Antacids/alginates for symptomatic relief. Slower taper for high baseline doses. Note: switching brand does not change the taper schedule.",
+    monitoring: "Monitor for symptom recurrence (heartburn, regurgitation, dysphagia) and rebound acid hypersecretion every 2 weeks during taper until 8 weeks post-cessation, then monthly for 3 months, then 6-monthly. Warn patient rebound symptoms typically resolve within 4-8 weeks.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Gastrointestinal",
+    medicine: "Prochlorperazine",
+    when: "Following short-term indications (e.g. acute vertigo resolving in hours to days), no clear indication, or for drug-induced nausea/vomiting/dizziness where the original drug can be suitably reduced or replaced.",
+    how: "Reduce dosing frequency every 1-2 weeks (e.g. from TDS to BD, then OD, then cease) and switch to on-demand or intermittent use at the lowest effective dose.",
+    monitoring: "Monitor for disease exacerbations or adverse drug withdrawal events (e.g. withdrawal-emergent abnormal movements) every 2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Gastrointestinal",
+    medicine: "Macrogol laxatives",
+    when: "Without an ongoing indication in people who are asymptomatic, or for drug-induced constipation where the original drug can be suitably reduced, discontinued, or replaced.",
+    how: "Reduce by one sachet and then alternate-day dosing every 1-2 weeks. Switch to on-demand use at the lowest effective dose. Discontinue once regular bowel movements occur on alternate-day dosing.",
+    monitoring: "Monitor for recurrence of constipation following each dose adjustment. Monitor for changes in mobility, fluid and fibre intake.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Gastrointestinal",
+    medicine: "Potassium supplements",
+    when: "Without an ongoing indication (e.g. past use for diuretic-induced hypokalaemia and current normal serum potassium), for drug-induced hypokalaemia where original drug can be ceased, or with no clear indication.",
+    how: "Discontinue without the need for tapering. If tapering is preferred for high doses (> 1200 mg TDS), reduce dose by 50% every 2 weeks to minimise the risk of hypokalaemia.",
+    monitoring: "Reassess serum potassium concentration once, one week after deprescribing. Periodic monitoring for dietary changes and symptoms of hypokalaemia (e.g. muscle weakness, cramps, palpitations).",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Blood & Blood-Forming",
+    medicine: "Antithrombotic agents (Anticoagulants and Antiplatelets)",
+    when: "Anticoagulants (warfarin, apixaban, rivaroxaban, dabigatran): short-term VTE completed (6-12 months); AF with CHA2DS2-VASc 0-1 male / 1-2 female; advanced CKD where bleeding risk outweighs benefit; warfarin in stage 4-5 CKD. Antiplatelets: aspirin for primary prevention in >= 70 years (NNT high, NNH low); DAPT beyond 6-12 months post-ACS; triple therapy (anticoagulant + DAPT) beyond 1-4 weeks post-PCI.",
+    how: "Cease anticoagulants and/or antiplatelets without the need for tapering. For DOAC cessation, no bridging required. For warfarin, cease and allow INR to normalise.",
+    monitoring: "Closely monitor ongoing risk factors (bleeding and cardiovascular events) at least monthly for the first 6 months, then 6-monthly. Warn patients to seek medical attention for dyspnoea, chest pain, or calf pain.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Blood & Blood-Forming",
+    medicine: "Iron / Vitamin B12 (anti-anaemic preparations)",
+    when: "If haemoglobin and ferritin/B12 levels are within an acceptable range and there is no ongoing indication (e.g. underlying cause addressed), drug-induced (e.g. metformin/PPI use) where original drug modified, or no documented history of deficiency.",
+    how: "Cease iron and/or vitamin B12 therapy without the need for tapering. Assess nutritional status prior to deprescribing.",
+    monitoring: "Offer laboratory monitoring of complete blood count, iron studies/B12 periodically (e.g. 11 months post-discontinuation or sooner if symptomatic). Monitor for fatigue, shortness of breath, glossitis, neuropathy.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Cardiovascular",
+    medicine: "Digoxin / Sotalol",
+    when: "Digoxin: HFrEF stabilised on GDMT, AF with target HR achieved with other agents, or experiencing adverse effects (nausea, visual changes, bradycardia). Sotalol: permanent AF with no intention to restore sinus rhythm, or stabilised in normal sinus rhythm for 2-3 months.",
+    how: "Digoxin: abrupt cessation if subtherapeutic or toxicity. If tapering, reduce by 50% every 2 weeks until <= 62.5 mcg. Sotalol: gradual tapering of dose by 25% every 1-2 weeks.",
+    monitoring: "Monitor changes in HR and/or signs of cardiac decompensation every 1-2 weeks until at least 4 weeks post-cessation, then at 3 and 6 months, then 6-monthly.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Cardiovascular",
+    medicine: "Organic Nitrates",
+    when: "Taking long-acting nitrates in combination with beta-blockers or CCBs for stable coronary heart disease who have not experienced angina symptoms or required short-acting nitrates for at least 6 months.",
+    how: "Gradually reduce the dose (e.g. 120mg daily -> 60mg -> 30mg -> cease). For transdermal, gradually reduce patch strength. Ensure short-acting nitrates are available PRN.",
+    monitoring: "Monitor blood pressure and recurrence of angina symptoms (e.g. weekly for at least 2 weeks after withdrawal).",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Cardiovascular",
+    medicine: "Antihypertensives (ACEi, ARB, CCB, Beta-blocker, Alpha-blocker)",
+    when: "Relative contraindications (e.g. combination ACEi + ARB, beta-blockers in bradycardia) or adverse effects outweigh benefits (e.g. SBP < 150 mmHg in people >= 80 years with orthostatic hypotension, recurrent falls, or frailty). Target SBP < 150 mmHg in >= 80 years before considering taper.",
+    how: "Deprescribe one agent at a time. Beta-blockers and centrally acting agents: halve daily dose every 2 weeks. Recommended deprescribing sequence: 1. Loop diuretics/centrally acting/alpha-blockers 2. Aldosterone antagonists 3. Beta-blockers/thiazides 4. CCBs 5. ACEi/ARBs (last due to renoprotective benefit).",
+    monitoring: "Self-monitor for orthostatic symptoms, angina, BP, HR. Monitor falls and cardiovascular risk factors at least monthly for 6 months, then 6-monthly. Standing BP measurement at each review.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Cardiovascular",
+    medicine: "Diuretics (Furosemide, Hydrochlorothiazide, Indapamide, Spironolactone)",
+    when: "No current indication (HF, CKD, HTN), adverse effects (e.g. severe urinary incontinence, hyponatraemia, gout) outweigh benefits, HTN control criteria met, or relative contraindications (e.g. drug-induced oedema where causative drug ceased).",
+    how: "Furosemide: < 40mg cease directly; 40mg halve for 1 week; 80mg halve for 2 weeks; > 80mg reduce by 40mg every 2 weeks. Thiazides: taper before loop diuretic if combined. Taper dose while monitoring fluid status and daily weight.",
+    monitoring: "Monitor BP, peripheral oedema, heart failure signs, and body weight weekly during tapering until 3 months. Monitor serum potassium and renal function. Alert patient to report ankle swelling or sudden weight gain (> 2kg in 2 days).",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Cardiovascular",
+    medicine: "Lipid-modifying agents / Statins (Atorvastatin, Rosuvastatin, Simvastatin)",
+    when: "Primary prevention in people aged 65-79 with 5-year CVD risk < 5%, or < 10% with zero CAC score (coronary artery calcium), or aged >= 80 where adverse risks outweigh benefits. Advanced life-limiting illness (life expectancy < 12 months). Statin-related myopathy or intolerance. Note: secondary prevention statins (post-MI, stroke, established CVD) should generally be continued.",
+    how: "Discontinue lipid-lowering agents without the need for tapering.",
+    monitoring: "Monitor lipid concentrations annually. Review cardiovascular risk profile at 6-12 months. No rebound effect expected on cessation.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Dermatological",
+    medicine: "Topical Corticosteroids (skin)",
+    when: "No ongoing indication (asymptomatic after uninterrupted treatment using appropriate potency) or unclear indication.",
+    how: "Discontinue topical corticosteroids without the need for tapering when the flare is fully resolved (itch-free, inflammation resolved). Switch to PRN or intermittent use (e.g. 2 days/week) for maintenance. Continue use of emollients.",
+    monitoring: "Advise individuals to report symptoms of recurrence or topical corticosteroid withdrawal syndrome (e.g. red or darker burning skin, papulopustular rashes).",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Genitourinary",
+    medicine: "Estrogens (Systemic and Vaginal MHT)",
+    when: "Systemic MHT: menopausal symptoms have resolved or improved. Vaginal MHT: genitourinary syndrome of menopause symptoms have resolved or improved.",
+    how: "Stop abruptly without tapering; if preferred, oral: reduce 1 dose/week every 2-4 weeks. Transdermal: gradually lower patch strength over 3-6 months. Topical: reduce frequency every 2-4 weeks.",
+    monitoring: "Periodic evaluation of symptom control, ongoing benefit-risk profile, fracture risk, and bone mineral density if indicated.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Genitourinary",
+    medicine: "Anticholinergics / Antimuscarinics (Overactive Bladder: Oxybutynin, Solifenacin, Tolterodine)",
+    when: "Presence of cognitive impairment, delirium, dementia, or high fall risk; no clear indication or benefit; or drug-induced symptoms where original drug can be modified. High anticholinergic burden - listed in Beers Criteria and STOPP. Particularly oxybutynin (highest CNS penetrance) in older adults.",
+    how: "Generally discontinue without tapering. For high-dose therapy or patient preference, gradually reduce the dose or dosing frequency per week. Non-pharmacological measures: bladder training, pelvic floor exercises.",
+    monitoring: "Periodic evaluation of individual preferences, psychological effects, and monitor for symptom recurrence (e.g. urgency, frequency, incontinence, nocturia). Assess cognitive function after cessation.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Genitourinary",
+    medicine: "Drugs used in Benign Prostatic Hypertrophy / BPH (Tamsulosin, Alfuzosin, Finasteride)",
+    when: "Symptoms have resolved or improved (e.g. post-TURP or prostatectomy) or if adverse effects/interactions (e.g. symptomatic orthostatic hypotension, syncope, floppy iris syndrome risk) outweigh potential benefits.",
+    how: "Deprescribe without tapering. If preferred, taper by reducing dose/frequency per week. Advise lifestyle modifications (e.g. timed voiding, limit fluids at night).",
+    monitoring: "Monitor for symptom recurrence (urgency, frequency, nocturia, weak stream). Check BP if remaining on alpha-blockers. Advise patient to record alpha-blocker use in medical alert for future eye surgery (floppy iris syndrome).",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Endocrine & Hormonal",
+    medicine: "Drugs used in diabetes (Oral & Injectable: Metformin, Sulfonylureas, SGLT2i, GLP-1, Insulin)",
+    when: "If the two most recent consecutive HbA1c levels are below the individualised target (prioritising deprescribing insulin first, then sulfonylureas), or in the presence of side effects impacting quality of life (e.g. SGLT2i genitourinary infections, metformin GI intolerance or weight loss). Frail older adults: relax HbA1c target to < 8-8.5%, deprescribe agents causing hypoglycaemia.",
+    how: "Oral medicines: discontinue without the need for tapering, one agent at a time, in consultation with the diabetes care team. Deprescribe combination therapy one at a time, prioritising hypoglycaemia risk agents (insulin > sulfonylureas > DPP4i > SGLT2i > metformin). Seek endocrinology advice for insulin dose tapering.",
+    monitoring: "Monthly monitoring of the risk-benefit profile for at least 3 months, then 6-monthly. Advise daily self-monitoring of BGL during tapering. Review HbA1c once after ~3 months, then twice a year.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Endocrine & Hormonal",
+    medicine: "Corticosteroids - Systemic (Prednisone, Prednisolone, Dexamethasone)",
+    when: "Long-term use for COPD (not indicated for systemic), autoimmune conditions in sustained remission (>= 12 months), or polymyalgia rheumatica after >= 12 months therapy without active disease signs (normal ESR/CRP).",
+    how: "Reduce by prednisone equivalent of 10-20% per month (not per week for long-term use). May require very gradual tapering (e.g. 1mg every 4-8 weeks) when approaching physiological dosing (5-7.5mg/day). Cortisol stimulation test if HPA suppression suspected.",
+    monitoring: "Monitor for glucocorticoid withdrawal syndrome (sleep disturbance, mood changes), adrenal insufficiency (myalgia, fatigue, hypotension), and condition recurrence. Monthly ESR/CRP for 3 months then 6-monthly for PMR.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Endocrine & Hormonal",
+    medicine: "Levothyroxine (Thyroxine)",
+    when: "Asymptomatic and stable on a low dose (25-50 mcg), unclear indication (e.g. subclinical hypothyroidism with TSH 4-10 mIU/L), or drug-induced where original drug modified.",
+    how: "Reduce dose by ~50% if baseline TSH is within acceptable range. After 6 weeks, if TSH acceptable, discontinue completely. Reassess free T4 and TSH at 6-week intervals.",
+    monitoring: "Monitor for symptoms of hypothyroidism (fatigue, weight gain, cold intolerance, constipation, depression). Review TSH and free T4 six weeks after each dose adjustment.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Endocrine & Hormonal",
+    medicine: "Teriparatide (Forteo)",
+    when: "Taking teriparatide for 24 months or longer (due to limited efficacy/safety data beyond 24 months and PBS lifetime subsidisation limit of 24 months).",
+    how: "Cease without the need for tapering. Transition to bisphosphonate therapy for at least 12 months to preserve bone mineral density gains.",
+    monitoring: "Monitor fracture risk (FRAX/bone turnover markers) monthly for 6 months, then 6-monthly. Assess BMD using DXA once after 12 months of discontinuation.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Musculoskeletal",
+    medicine: "NSAIDs - Non-steroidal Anti-inflammatory Drugs (Ibuprofen, Naproxen, Diclofenac, Celecoxib)",
+    when: "Long-term use (> 4 weeks), due to the high risk of severe gastrointestinal complications (ulcer, GI bleeding), cardiovascular events, and renal impairment adverse effects. Particularly if: eGFR < 30 mL/min, concurrent anticoagulation or antiplatelet therapy, age >= 65 years with prior GI ulcer, or high cardiovascular risk.",
+    how: "Discontinue without the need for tapering. If preferred, reduce dose by 25-50% every 1-2 weeks then cease completely. Switch to PRN/topical NSAIDs (diclofenac gel) or alternative therapies (paracetamol, physiotherapy, capsaicin cream).",
+    monitoring: "Advise patients to report symptoms of pain, or changes in function/quality of life. Monitor renal function and BP if on concurrent antihypertensives.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Musculoskeletal",
+    medicine: "Anti-gout preparations (Allopurinol, Febuxostat, Colchicine)",
+    when: "Urate-lowering therapy (allopurinol/febuxostat): clinical remission >= 1 year, normal serum uric acid (< 0.36 mmol/L), no tophi or flares. Colchicine: except when initiating ULT for short-term prophylaxis (~6 months).",
+    how: "Halve the daily dose every 2 weeks, ensuring individuals remain symptom-free before initiating each taper. Cease completely once at half lowest dose formulation. Colchicine: reduce from 500 mcg BD to 500 mcg OD for 4 weeks then cease.",
+    monitoring: "Monitor serum uric acid, renal function, and gout flares every 2 weeks for 1 month, then monthly for 3 months, then 6-monthly.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Musculoskeletal",
+    medicine: "Calcium & Vitamin D supplements",
+    when: "Calcium: community-dwelling people with dietary intake > 1,300 mg/day from food. Vitamin D: community-dwelling people with optimal serum 25-OH vitamin D levels (>= 50 nmol/L) not at fracture risk (no osteoporosis, no fall history, adequate sun exposure).",
+    how: "Discontinue without the need for tapering.",
+    monitoring: "Periodic monitoring for changes in dietary calcium intake and/or sunlight exposure. Implement multifactorial approaches to reduce fall and fracture risk.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Musculoskeletal",
+    medicine: "Denosumab (Prolia) - cessation requires mandatory bisphosphonate transition",
+    when: "Severe adverse effects (osteonecrosis of the jaw / MRONJ, atypical femur fracture), advanced CKD stage 4-5 (severe hypocalcaemia risk), advanced frailty or terminal illness where fracture prevention benefit is unlikely, or patient choice after informed discussion. CRITICAL WARNING: Denosumab cessation without transition to bisphosphonate causes rapid rebound bone loss and multiple vertebral fractures within 12 months.",
+    how: "NEVER cease abruptly without transition. Mandatory transition protocol: (1) Administer last denosumab dose as planned. (2) Initiate oral bisphosphonate 6 months after last denosumab injection: alendronate 70mg weekly (PBS-subsidised) or risedronate 35mg weekly. (3) Continue bisphosphonate for >= 12 months minimum. (4) If oral bisphosphonate intolerable: IV zoledronic acid 5mg infusion 6 months after last denosumab dose. Dental review before transitioning.",
+    monitoring: "Bone turnover markers (CTX, P1NP) 3-6 months post-last dose - should decrease on bisphosphonate. DXA at 12-18 months post-transition. Serum calcium 1-2 weeks post-last injection. Alert patient/prescriber to seek urgent review if back/hip pain (rebound fracture risk). Annual dental review for MRONJ.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Musculoskeletal",
+    medicine: "Bisphosphonates - Drug Holiday (Alendronate, Risedronate, Zoledronic Acid)",
+    when: "Consider drug holiday after: (a) 5 years oral bisphosphonate (alendronate 70mg/week, risedronate 35mg/week or 150mg/month) OR (b) 3 consecutive annual zoledronic acid (5mg IV) infusions. Holiday is appropriate if: femoral neck T-score > -2.5, no prior hip or vertebral fractures, stable low-moderate FRAX 10-year risk (< 20% major osteoporotic fracture). CONTINUE therapy if: hip or vertebral fracture history, T-score <= -2.5, high FRAX risk, or chronic corticosteroid use > 7.5mg/day prednisone. Also cease if: eGFR < 30 (oral BP contraindicated), confirmed atypical femur fracture (subtrochanteric/diaphyseal), oesophageal achalasia, inability to remain upright 30 min (oral only).",
+    how: "Oral bisphosphonates: cease without tapering; residual anti-fracture effect persists 1-2 years (alendronate) to 1-3 years (risedronate) post-cessation due to skeletal retention. Drug holiday duration: 2-3 years, then reassess. IV zoledronic acid: defer next scheduled infusion; holiday duration 3 years, then reassess. Resume if: new fragility fracture, T-score decline > 0.1 g/cm2, or FRAX increase above treatment threshold.",
+    monitoring: "Annual FRAX reassessment during holiday. DXA every 2 years during holiday. Annual dental review (MRONJ risk persists post-cessation, higher risk for IV bisphosphonates). Monitor for prodromal atypical femur fracture symptoms (new thigh/groin pain) - warrants urgent X-ray/MRI of femur.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Opioids (Morphine, Oxycodone, Fentanyl, Codeine, Tramadol, Buprenorphine)",
+    when: "Chronic non-cancer pain (CNCP) with >= 4 weeks use and no clinically meaningful functional improvement, or where harms outweigh benefits: falls, sedation, cognitive impairment, respiratory depression, opioid-induced hyperalgesia, severe constipation, dependence. Cancer pain in remission. Comfort-focused/palliative care initiated (opioid review, not necessarily cessation). Codeine: particularly ineffective in poor CYP2D6 metabolisers; convert to alternative.",
+    how: "Step 1: Calculate total 24-hour Oral Morphine Equivalent (OME). Step 2: Tapering rate - < 12 months use: reduce 5-10% OME/week; >= 12 months use: reduce 5-10% OME/month (slower if needed). Step 3: PBS Australian dose steps - Morphine IR (Sevredol) 5, 10, 20mg; Oxycodone IR (Endone) 5, 10, 20mg; Codeine 8, 15, 30mg; Tramadol IR 50, 100mg; Fentanyl patch 12, 25, 50, 75, 100 mcg/hr. Step 4: Convert transdermal to oral equivalent before tapering. Step 5: CRITICAL - do not restart at prior dose if ceased (tolerance lost within 3-7 days - overdose risk).",
+    monitoring: "Pain NRS/VAS and functional status (Brief Pain Inventory) at each review. COWS (Clinical Opiate Withdrawal Scale) every 2 weeks during taper. Monitor opioid withdrawal signs: sweating, yawning, rhinorrhoea, anxiety, GI cramping. Prescribe naloxone (Nyxoid/S8) and train patient/carer on use. Urine drug screen if diversion risk. Review 2-weekly during taper, monthly for 3 months, then 6-monthly.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Gabapentinoids (Pregabalin / Lyrica, Gabapentin / Neurontin)",
+    when: "No demonstrated benefit after 2-3 months adequate trial for neuropathic pain, epilepsy, or generalised anxiety disorder (pregabalin PBS-subsidised for epilepsy and GAD only in Australia). Adverse effects outweigh benefits: dizziness, somnolence, falls, cognitive impairment, weight gain, peripheral oedema. High-risk patients: frail older adults, CKD (accumulation risk), concurrent CNS depressants (opioids + benzodiazepines + gabapentinoid = triple CNS depression risk).",
+    how: "Reduce dose by 25% every 1-2 weeks. Do NOT abruptly cease (risk of seizures, acute withdrawal, rebound pain/anxiety). PBS pregabalin dose steps: 300mg/day -> 225mg -> 150mg -> 75mg -> 25mg -> cease (25mg capsule available). Gabapentin: reduce by 100-300mg every 1-2 weeks; 100mg capsule for final step. Taper gabapentinoid before opioid if both being reduced simultaneously (unless opioid causing more harm).",
+    monitoring: "Pain scores, anxiety (GAD-7), sleep quality, and balance/falls risk at each review. Monitor for withdrawal (agitation, insomnia, nausea, diaphoresis - onset within 12-48 hours of cessation). Renal function check (eGFR-guided dosing). Review every 2 weeks during taper, then monthly for 3 months.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Non-opioid Analgesics (Paracetamol, Topical agents)",
+    when: "Chronic use of paracetamol where no ongoing pain indication, or adverse effects in context of liver impairment or heavy alcohol use. Regular use without a clear chronic pain diagnosis. Topical NSAIDs (diclofenac gel) or capsaicin: no ongoing musculoskeletal indication.",
+    how: "Paracetamol: tapering not required; reduce from regular to PRN dosing; cease if no longer needed. Topical NSAID/capsaicin: cease without tapering. Switch to non-pharmacological pain management (physiotherapy, hydrotherapy, cognitive pain therapy).",
+    monitoring: "Monitor pain and function/quality of life every 2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Antiepileptics (Valproate, Carbamazepine, Lamotrigine, Levetiracetam, Phenytoin, Phenobarbital)",
+    when: "Epilepsy: seizure-free for >= 2 years (consider driving implications - notify patient and licencing authority). Non-epilepsy indications (neuropathic pain, BPSD, mood stabiliser): no therapeutic benefit after 2-3 months trial or poorly tolerated.",
+    how: "Epilepsy: reduce dose 10-25% monthly. Non-epilepsy: reduce dose by 25% every week. Slower tapers (up to 6 months) preferred for phenobarbital/clonazepam (physical dependence risk). Withdraw one antiepileptic at a time.",
+    monitoring: "Monitor for symptom recurrence every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months. For epilepsy, ensure seizure action plan is in place before tapering. Therapeutic drug monitoring at each dose change for narrow therapeutic index agents (phenytoin, carbamazepine).",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Levodopa / Carbidopa (Sinemet, Madopar)",
+    when: "No clinically meaningful improvement in motor symptoms after >= 3 months of optimal dose therapy, intolerable non-motor side effects (psychosis, impulse control disorder, orthostatic hypotension), or adverse impact outweighs benefits.",
+    how: "Abrupt cessation if rapid assessment needed or significant toxicity. Otherwise, taper by 1 tablet or 100mg levodopa equivalent every 2 weeks until fully withdrawn. WARNING: abrupt cessation risks neuroleptic malignant syndrome-like reaction.",
+    monitoring: "Closely monitor for worsening motor symptoms (tremors, bradykinesia, rigidity) and non-motor symptoms (mood changes, cognitive decline, autonomic dysfunction) every 1-2 weeks.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Antipsychotics (Haloperidol, Olanzapine, Risperidone, Quetiapine, Aripiprazole)",
+    when: "No clear indication (e.g. non-primary psychotic illness), adverse effects (Parkinsonism, Lewy body disease, QT prolongation, metabolic effects, stroke risk in dementia), or BPSD managed beyond 12 weeks with stable or resolved symptoms. Particularly urgent in: Parkinson's disease (all except quetiapine and clozapine are contraindicated), Lewy body dementia, or stroke history.",
+    how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose formulation reached. Slower tapers (5-10% reductions) for prolonged use or high doses. Ensure BPSD management plan (non-pharmacological strategies) is in place.",
+    monitoring: "Monitor psychological (agitation, hallucinations, psychosis) and physical (tardive dyskinesia, akathisia) withdrawal every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Benzodiazepine anxiolytics (Diazepam, Lorazepam, Clonazepam, Alprazolam, Oxazepam)",
+    when: "Long-term use (> 4 weeks) for anxiety or PTSD, as the risk of dependence, falls, sedation, cognitive impairment, and respiratory depression generally outweighs potential benefits (except in special circumstances e.g. terminal sedation). Particularly in age >= 65 (Beers Criteria, STOPP A1).",
+    how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose formulation reached. Consider 5-10% dose reductions for those with history of withdrawal difficulty. For short-acting benzodiazepines (lorazepam, oxazepam, alprazolam): consider switching to equivalent long-acting diazepam before tapering to ease withdrawal. Equivalent doses: diazepam 5mg = lorazepam 0.5mg = oxazepam 15mg = alprazolam 0.25mg.",
+    monitoring: "Monitor anxiety symptoms, sleep, and health status every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly. Benzodiazepine withdrawal symptoms (seizures, tremor, diaphoresis, delirium) - consider inpatient setting for high-dose rapid cessation.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Hypnotics and Sedatives (Z-drugs: Zolpidem, Zopiclone, Temazepam)",
+    when: "Long-term use (> 4 weeks) for insomnia, as the risk of dependence, rebound insomnia, falls, and impaired cognition generally outweighs potential benefits. Temazepam (S8 Schedule 8): requires specialist authority for > 2 months in most Australian jurisdictions. Z-drugs: Beers Criteria - avoid in older adults; associated with MVA risk and complex sleep behaviours.",
+    how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose formulation reached. Consider smaller dose reductions (5-10%) if high-risk withdrawal. Cognitive Behavioural Therapy for Insomnia (CBT-I) should be initiated concurrently as first-line alternative. Equivalency: temazepam 10mg = zopiclone 3.75mg = zolpidem 5mg.",
+    monitoring: "Monitor for withdrawal symptoms (insomnia rebound, anxiety, tremor), worsening sleep quality, and falls every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months. Refer to sleep psychologist for CBT-I if insomnia persists.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "SSRIs / SNRIs (Sertraline/Zoloft, Escitalopram/Lexapro, Venlafaxine/Efexor, Fluoxetine/Prozac, Duloxetine/Cymbalta)",
+    when: "Major depressive disorder: sustained clinical remission >= 12 months for first episode; >= 2 years after second episode; >= 3-5 years (consider long-term) for third or subsequent episode. Generalised anxiety disorder: reassess after >= 12 months symptom control. Unclear indication or absent from active problem list. Adverse effects: hyponatraemia/SIADH (elderly risk), sexual dysfunction, GI bleeding (particularly with NSAIDs/anticoagulants), QTc prolongation (citalopram, escitalopram), weight gain (paroxetine), anticholinergic burden (paroxetine > duloxetine).",
+    how: "Use HYPERBOLIC tapering (not linear) to minimise discontinuation syndrome (FINISH: Flu-like, Insomnia, Nausea, Imbalance, Sensory disturbances, Hyperarousal/Anxiety): Sertraline - 200 -> 150 -> 100 -> 75 -> 50 -> 37.5 -> 25 -> 12.5mg -> 0; Escitalopram - 20 -> 15 -> 10 -> 7.5 -> 5 -> 2.5mg -> 0; Venlafaxine XR (highest discontinuation risk) - reduce by 37.5mg every 4 weeks, use 37.5mg capsule for final step; Fluoxetine (long t1/2, fewer discontinuation symptoms) - reduce by 50% every 2-4 weeks. Allow 2-4 weeks at each dose step. Use oral liquid formulation (sertraline solution, fluoxetine liquid 20mg/5mL) or scored tablets for small final dose reductions.",
+    monitoring: "PHQ-9 and GAD-7 at each review. Distinguish discontinuation syndrome (FINISH symptoms - onset 2-4 days post-reduction, resolve 2-4 weeks, relieved by restarting) from relapse (onset 2-4 weeks after cessation, progressive, consistent with original presentation). Review every 2 weeks during taper, then monthly for 6 months post-cessation, then 6-monthly. Check serum sodium in elderly (SIADH risk).",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Tricyclic Antidepressants / TCAs (Amitriptyline, Nortriptyline, Doxepin)",
+    when: "Potentially inappropriate in adults >= 65 years per Beers Criteria 2023 and STOPP v3 due to high anticholinergic burden. Deprescribe when: used for insomnia, chronic pain, or headache prophylaxis without benefit reassessment; cognitive impairment, delirium, glaucoma, urinary retention, constipation, cardiac arrhythmia, fall risk, or history of postural hypotension; or low dose (amitriptyline 10-25mg) prescribed years ago without reassessment of ongoing need.",
+    how: "Reduce dose by 10-25mg (or half available dose) every 2-4 weeks. Amitriptyline 10mg (lowest PBS dose): reduce to alternate-day dosing for 2 weeks then cease. If originally used as antidepressant: ensure mood stability before tapering; may need to bridge to SSRI first (washout period 2 weeks minimum). Available doses: amitriptyline 10mg, 25mg; nortriptyline 10mg, 25mg.",
+    monitoring: "Monitor for anticholinergic withdrawal (agitation, insomnia, nausea, GI cramps), mood/pain/sleep relapse. ECG if QTc prolongation concern. MMSE/MoCA cognitive assessment before and 4-8 weeks after cessation - may see improvement. Review every 2 weeks during taper, then monthly for 3 months.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Antidepressants - General (MAOI, Mirtazapine, Agomelatine, Bupropion)",
+    when: "Major depressive disorder with achieved symptomatic remission/clinical stability for 6-12 months for first episode (longer for recurrent depression), or when indication is unclear or unknown. Adverse effects specific to agent: mirtazapine (weight gain, sedation in frail); agomelatine (hepatotoxicity - monitor LFTs); bupropion (seizure risk, hypertension, avoid in eating disorders).",
+    how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose reached for 1-4 weeks. Use slower tapers (5-10%) for high-dose or prolonged use. Mirtazapine: paradoxically, lower doses are more sedating - plan taper carefully. For MAOIs: specialist supervision required.",
+    monitoring: "Monitor for worsening neuropsychiatric symptoms (anxiety, agitation, depression relapse) and withdrawal effects every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Sedating Antihistamines (Promethazine/Phenergan, Doxylamine/Restavit, Diphenhydramine)",
+    when: "Use >= 4 weeks for any indication in adults >= 65 years (Beers Criteria 2023, STOPP v3 - avoid in older adults). Urgent deprescribing if: cognitive impairment/dementia (precipitate delirium), fall risk (sedation, orthostatic hypotension), urinary retention, constipation, dry mouth, glaucoma, or cardiac arrhythmia. Includes OTC combinations: Mersyndol Forte (codeine + paracetamol + doxylamine), Restavit (doxylamine), Phenergan (promethazine). High anticholinergic burden - all contribute to ACB score.",
+    how: "Cease without tapering if use < 4 weeks. For longer use: reduce dosing frequency (nightly -> every 2nd night x 2 weeks -> cease). If used for nausea: address underlying cause; switch to non-anticholinergic antiemetic (metoclopramide, ondansetron) before cessation. If used for insomnia: initiate CBT-I, sleep hygiene measures, or consider low-dose melatonin as bridge.",
+    monitoring: "Monitor for anticholinergic withdrawal (agitation, insomnia, GI effects) for 2-4 weeks. MMSE/MoCA 4-8 weeks post-cessation (may show meaningful cognitive improvement). ACB score reassessment (target < 3 total). Falls risk reassessment at 1 month.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Melatonin (Circadin 2mg, Slenyto)",
+    when: "No longer required after stabilisation of sleep-wake cycle, or >= 3 months use without clear ongoing benefit. PBS subsidy (Circadin 2mg prolonged-release): short-term treatment up to 13 weeks for primary insomnia in adults >= 55 years. Non-PBS use: reassess if prescribed off-label for jet lag, anxiety, or other indications without evidence-based review.",
+    how: "Reduce dose by 50% every 2-4 weeks then cease. Circadin 2mg -> 1mg (half tablet if uncoated) -> alternate-day dosing -> cease. Minimal withdrawal risk. Implement sleep hygiene, consistent sleep schedule, and appropriate light exposure concurrently.",
+    monitoring: "Monitor sleep quality (PSQI or subjective sleep diary), sleep onset latency, and daytime function for 4 weeks post-cessation. Monitor for rebound insomnia. If insomnia returns, reassess contributing factors (pain, nocturia, anxiety, caffeine, poor sleep hygiene, OSA) before re-initiating.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Central Nervous System",
+    medicine: "Anti-dementia medicines (Cholinesterase Inhibitors: Donepezil, Rivastigmine, Galantamine; and Memantine)",
+    when: "Dementias other than Alzheimer's disease, Dementia with Lewy Bodies (DLB), Parkinson's disease dementia (PDD), or vascular dementia. Or: > 12 months without clear functional/cognitive benefit, progression to severe or end-stage dementia where benefit is uncertain, significant side effects (bradycardia, syncope, GI haemorrhage for ChEIs; hallucinations for memantine), or advanced illness/goals of comfort care.",
+    how: "Halve daily dose every 4 weeks. Stop anticholinergics first if patient is on combination therapy (anticholinergics antagonise ChEI mechanism). Cease completely once half lowest standard dose formulation is reached.",
+    monitoring: "Monitor for withdrawal and disease exacerbation (agitation, apathy, cognitive decline, reduced ADLs, behavioural disturbance) every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months. Trial re-introduction if significant decline observed post-cessation.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Respiratory",
+    medicine: "Inhaled Corticosteroids / ICS (Fluticasone, Budesonide, Beclomethasone) in COPD",
+    when: "Stable COPD on triple therapy (ICS/LABA/LAMA) without: a severe exacerbation requiring hospitalisation in the past 12 months, or >= 2 moderate exacerbations in the past 12 months, or blood eosinophils >= 300 cells/mcL (predictor of ICS benefit). PBS criteria: ICS subsidised in COPD only with LABA/LAMA combination.",
+    how: "Discontinue ICS without the need for tapering (supported by WISDOM trial evidence), or use gradual stepwise reduction based on patient preference. Continue dual bronchodilator (LAMA/LABA) maintenance therapy. Do NOT discontinue ICS in asthma patients (rebound deterioration risk).",
+    monitoring: "Monitor lung function (spirometry FEV1) 3-6 months post-deprescribing. Monitor symptoms/QoL (CAT score, mMRC dyspnoea scale) every 6 weeks for first 6 months, then exacerbation frequency 6-monthly.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Ophthalmology",
+    medicine: "Corticosteroids - topical eye drops (Prednisolone acetate, Dexamethasone eye drops)",
+    when: "Used for > 6-8 weeks with symptoms resolved, stable, and unlikely to recur (e.g. post-operative healing, resolved anterior uveitis).",
+    how: "Short-term (< 3 weeks): no taper. >= 3 weeks: reduce dosing frequency weekly. > 3 months/refractory: reduce frequency every 2-4 weeks (reduce frequency, not number of drops per administration).",
+    monitoring: "Close monitoring by ophthalmologist/optometrist for rebound intraocular inflammation and IOP elevation 2-4 weeks after discontinuing. Monitor for steroid-induced glaucoma.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Ophthalmology",
+    medicine: "Antiglaucoma preparations and miotics (Latanoprost, Timolol, Dorzolamide, Bimatoprost)",
+    when: "When the extent of glaucoma progression after treatment discontinuation is unlikely to impact quality of life in their lifetime (advanced frailty, limited life expectancy).",
+    how: "Cease anti-glaucoma preparations without the need for tapering.",
+    monitoring: "Monitor intraocular pressure and signs of optic nerve progression for 2-8 weeks post-discontinuation, then 3-6 monthly in the first year. Ophthalmologist review.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  },
+  {
+    category: "Ophthalmology",
+    medicine: "Ocular lubricants / Dry eye preparations (Hypromellose, Carbomer, Sodium hyaluronate eye drops)",
+    when: "Symptoms have resolved, are stable, and are unlikely to recur, particularly if an avoidable risk factor (e.g. drug-induced dry eyes from anticholinergics, antihistamines) has been addressed.",
+    how: "Gradually taper doses before ceasing if > daily administration (e.g. BD or TDS), then switch to PRN use.",
+    monitoring: "Ongoing monitoring for dry eyes, redness, and discomfort for 3-6 months after deprescribing.",
+    evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
+  }
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   5Ms FRAMEWORK DATA
+═══════════════════════════════════════════════════════════════ */
+const fiveMsData = [
+  {
+    id: "mind",
+    emoji: "🧠",
+    label: "1st M",
+    title: "Mind",
+    color: "#7c3aed",
+    bg: "#ede9fe",
+    triggers: [
+      "Dementia or MCI diagnosis — review anticholinergics, sedatives",
+      "Delirium episode — review CNS-active polypharmacy",
+      "Depression or anxiety — review sedating antihistamines",
+      "ACB (Anticholinergic Burden) score ≥ 3",
+      "New cognitive decline on MMSE/MoCA screening"
+    ],
+    indicators: [
+      "Antipsychotics >12 wks for BPSD without review",
+      "Concurrent BZD + opioid + antipsychotic (triple sedation risk)",
+      "Tricyclic antidepressants in patients >65 years"
+    ]
+  },
+  {
+    id: "mobility",
+    emoji: "🦵",
+    label: "2nd M",
+    title: "Mobility",
+    color: "#d97706",
+    bg: "#fef3c7",
+    triggers: [
+      "Fall in past 12 months — review orthostatic hypotensives",
+      "Fear of falling affecting QoL and independence",
+      "Gait speed <0.8 m/s (frailty indicator)",
+      "Sarcopenia or significant weight loss",
+      "Polypharmacy >5 medications with fall risk profile"
+    ],
+    indicators: [
+      "Benzodiazepines / Z-drugs — high fall risk (STOPP A1)",
+      "Antihypertensives causing orthostatic hypotension",
+      "Alpha-blockers (tamsulosin) causing syncope risk",
+      "Opioids causing sedation and balance impairment"
+    ]
+  },
+  {
+    id: "medicines",
+    emoji: "💊",
+    label: "3rd M",
+    title: "Medicines",
+    color: "#0d9488",
+    bg: "#ccfbf1",
+    triggers: [
+      "Polypharmacy: ≥5 medicines (RACGP definition)",
+      "Hyperpolypharmacy: ≥10 medicines (high-risk threshold)",
+      "PIMs (Potentially Inappropriate Medications) identified",
+      "Drug–drug interaction of clinical significance flagged",
+      "Medication no longer aligned with active diagnoses",
+      "New medicine prescribed to treat side effect of another"
+    ],
+    indicators: [
+      "STOPP/START criteria assessment due (annual HMR/RMMR)",
+      "Prescribing cascade detected",
+      "Duplicate therapeutic class identified",
+      "Ceased indication (e.g. bisphosphonate after 5 years)"
+    ]
+  },
+  {
+    id: "multicomplexity",
+    emoji: "🔬",
+    label: "4th M",
+    title: "Multicomplexity",
+    color: "#dc2626",
+    bg: "#fee2e2",
+    triggers: [
+      "CKD (eGFR <30) — dose reduction or cessation needed",
+      "Hepatic impairment affecting drug metabolism",
+      "Advanced heart failure (NYHA III–IV)",
+      "Frailty score ≥3 (Clinical Frailty Scale)",
+      "Reduced life expectancy (<1 year) — shift to comfort care",
+      "Post-acute hospital admission — medication reconciliation"
+    ],
+    indicators: [
+      "Metformin if eGFR <30 mL/min (STOPP)",
+      "NSAIDs in CKD, CCF, or anticoagulation co-therapy",
+      "Full-dose anticoagulation near end of life",
+      "Statins in primary prevention with limited prognosis"
+    ]
+  },
+  {
+    id: "matters",
+    emoji: "❤️",
+    label: "5th M",
+    title: "What Matters Most",
+    color: "#1e3a5f",
+    bg: "#dbeafe",
+    triggers: [
+      "Patient goals shift from curative to comfort care",
+      "Patient expresses wish to reduce medication burden",
+      "Advance care directive review or update",
+      "Post-diagnosis of terminal illness",
+      "Poor adherence due to pill burden or side effects"
+    ],
+    indicators: [
+      "Preventive medications (statins, antihypertensives) when prognosis limited",
+      "Vitamins/supplements with no evidence base for patient",
+      "Medications not aligned with patient's stated values",
+      "Treatments requiring hospital visits patient wishes to avoid"
+    ]
+  }
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   8-STEP PROCESS DATA
+═══════════════════════════════════════════════════════════════ */
+const stepsData = [
+  {
+    number: 1,
+    title: "Obtain a Complete Medication List",
+    subtitle: "Medication reconciliation across all settings",
+    phase: "Assessment",
+    phaseColor: "#7c3aed",
+    phaseBg: "#ede9fe",
+    actions: [
+      "Collate all prescription, OTC, herbal, and supplement use",
+      "Confirm with dispensing history (My Health Record, pharmacy records)",
+      "Interview patient/carer for actual medication-taking behaviour",
+      "Reconcile hospital medication list with pre-admission medications",
+      "Identify any recently ceased medications and reason for cessation"
+    ],
+    chapter: "Ch. 2: Medication Reconciliation | ACSQHC National Medication Safety Standard",
+    ipc: ["Pharmacist", "Nurse", "GP", "Patient/Carer"],
+    notes: "Use a validated tool: BPMH (Best Possible Medication History) process. Ensure all routes documented (topical, inhaled, injected)."
+  },
+  {
+    number: 2,
+    title: "Identify Potentially Inappropriate Medications (PIMs)",
+    subtitle: "Apply validated screening tools",
+    phase: "Screening",
+    phaseColor: "#d97706",
+    phaseBg: "#fef3c7",
+    actions: [
+      "Apply STOPP/START Criteria v3 (2023) to all medications",
+      "Calculate Anticholinergic Cognitive Burden (ACB) Score",
+      "Apply Australian Beers Criteria for patients ≥65 years",
+      "Use the Medication Appropriateness Index (MAI) for targeted review",
+      "Flag duplicate therapeutic classes",
+      "Identify prescribing cascades"
+    ],
+    chapter: "Ch. 3: PIM Identification | STOPP/START v3 Reference Tool",
+    ipc: ["Pharmacist", "GP", "Specialist"],
+    notes: "Document PIMs on the medication list with rationale. Prioritise by risk (fall risk, cognitive burden, renal/hepatic dosing)."
+  },
+  {
+    number: 3,
+    title: "Assess Indication for Each Medication",
+    subtitle: "Verify active indication vs. historical prescribing",
+    phase: "Assessment",
+    phaseColor: "#7c3aed",
+    phaseBg: "#ede9fe",
+    actions: [
+      "For each medication, confirm: active diagnoses, treatment duration, prescriber intent",
+      "Identify medications prescribed for symptoms that have resolved",
+      "Check if indication still applies given disease progression or remission",
+      "Differentiate between acute, prophylactic, and chronic maintenance use",
+      "Review bisphosphonates (5-year rule), PPIs (>8 weeks), antipsychotics (>12 weeks)"
+    ],
+    chapter: "Ch. 4: Indication Review | NPS MedicineWise Deprescribing Algorithm",
+    ipc: ["GP", "Specialist", "Pharmacist"],
+    notes: "Use the patient's problem list to cross-map each drug to its indication. Document 'no active indication' in clinical notes."
+  },
+  {
+    number: 4,
+    title: "Assess Overall Benefits vs. Burden",
+    subtitle: "Patient-centred risk-benefit analysis",
+    phase: "Clinical Judgement",
+    phaseColor: "#dc2626",
+    phaseBg: "#fee2e2",
+    actions: [
+      "Consider patient's life expectancy and goals of care",
+      "Evaluate time-to-benefit for each medication (short vs. long horizon)",
+      "Assess pill burden, adherence, quality of life impact",
+      "Review ADEs (Adverse Drug Events) and side effect burden",
+      "Apply frailty assessment (Clinical Frailty Scale) to contextualise risk",
+      "Consider functional status and care setting (home, residential aged care)"
+    ],
+    chapter: "Ch. 5: Risk-Benefit Analysis | Frailty and Polypharmacy Framework (RACGP)",
+    ipc: ["GP", "Geriatrician", "Pharmacist", "Patient/Carer"],
+    notes: "Document the clinical reasoning. Balance preventive benefit (often population-level) against individual patient risk and burden."
+  },
+  {
+    number: 5,
+    title: "Prioritise Medications for Deprescribing",
+    subtitle: "Select starting point based on risk and patient preference",
+    phase: "Planning",
+    phaseColor: "#0d9488",
+    phaseBg: "#ccfbf1",
+    actions: [
+      "Prioritise: highest risk medications first (falls, cognitive impairment, ADE risk)",
+      "Address medications patient finds most burdensome or refuses to take",
+      "Avoid simultaneous cessation of multiple drugs — one at a time preferred",
+      "Rank by: potential benefit of ceasing, reversibility if needed, withdrawal risk",
+      "Document the deprescribing plan with agreed sequence and timeline"
+    ],
+    chapter: "Ch. 6: Prioritisation | Deprescribing Guidelines for Older People (Reeve et al.)",
+    ipc: ["Pharmacist", "GP", "Patient/Carer"],
+    notes: "Consider patient autonomy and shared decision-making. The patient's preference significantly influences starting point."
+  },
+  {
+    number: 6,
+    title: "Engage in Shared Decision-Making with Patient & Carer",
+    subtitle: "Elicit values, concerns, and agreement",
+    phase: "Communication",
+    phaseColor: "#2563eb",
+    phaseBg: "#dbeafe",
+    actions: [
+      "Explain the proposed deprescribing plan in plain language",
+      "Acknowledge patient concerns (fear of disease relapse, loss of control)",
+      "Discuss expected outcomes and symptoms to monitor for",
+      "Explore patient's health literacy and carer's understanding",
+      "Obtain informed consent / agreement (document in clinical notes)",
+      "Provide written deprescribing information where available (NPS/SHPA resources)"
+    ],
+    chapter: "Ch. 7: Shared Decision-Making | RACGP Patient Communication Framework",
+    ipc: ["GP", "Pharmacist", "Nurse", "Patient/Carer", "Allied Health"],
+    notes: "Use teach-back method to confirm understanding. Adapt communication to patient's health literacy. Involve interpreter if needed."
+  },
+  {
+    number: 7,
+    title: "Implement Tapering or Cessation Plan",
+    subtitle: "Structured, safe withdrawal with prescriber involvement",
+    phase: "Implementation",
+    phaseColor: "#16a34a",
+    phaseBg: "#dcfce7",
+    actions: [
+      "Prescriber to update medication chart / PBS prescription",
+      "Provide patient with a written tapering schedule if applicable",
+      "Cease or reduce at planned rate — document in clinical notes and discharge summary",
+      "Alert community pharmacy of deprescribing plan for continuity",
+      "Cease PPI cover if the causative medication (e.g. NSAID) is also ceased",
+      "Use hyperbolic tapering for antidepressants and benzodiazepines as per evidence"
+    ],
+    chapter: "Ch. 8: Implementation | SHPA Clinical Guidelines & PBS Prescribing Requirements",
+    ipc: ["Pharmacist", "GP", "Nurse", "Specialist"],
+    notes: "Ensure the discharge summary explicitly documents deprescribing decisions. Communicate to GP and community pharmacist for continuity."
+  },
+  {
+    number: 8,
+    title: "Monitor, Review, and Document Outcomes",
+    subtitle: "Scheduled follow-up and adaptive management",
+    phase: "Review",
+    phaseColor: "#1e3a5f",
+    phaseBg: "#e0e7ef",
+    actions: [
+      "Schedule review at 2, 4, and 8 weeks post-cessation",
+      "Assess for symptom recurrence, withdrawal effects, or adverse outcomes",
+      "Adjust taper rate if withdrawal symptoms emerge",
+      "Restart medication if clinical need re-emerges (with lower dose if possible)",
+      "Update My Health Record, medication list, and GP communication",
+      "Document outcome of deprescribing attempt for future reference (HMR/RMMR report)"
+    ],
+    chapter: "Ch. 9: Monitoring & Review | NPS MedicineWise & RMMR Quality Framework",
+    ipc: ["GP", "Pharmacist", "Nurse", "Patient/Carer"],
+    notes: "Close the loop: document in all care settings. Shared care plan must reflect deprescribing outcome to avoid unintentional re-prescribing."
+  }
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   CATEGORY COLOUR MAP
+═══════════════════════════════════════════════════════════════ */
+const categoryColors = {
+  "Gastrointestinal":        { bg: "#dcfce7", text: "#16a34a" },
+  "Central Nervous System":  { bg: "#ede9fe", text: "#7c3aed" },
+  "Cardiovascular":          { bg: "#fee2e2", text: "#dc2626" },
+  "Endocrine & Hormonal":    { bg: "#fef3c7", text: "#d97706" },
+  "Musculoskeletal":         { bg: "#dbeafe", text: "#2563eb" },
+  "Blood & Blood-Forming":   { bg: "#fce7f3", text: "#db2777" },
+  "Dermatological":          { bg: "#ffedd5", text: "#b45309" },
+  "Genitourinary":           { bg: "#e0e7ff", text: "#1d4ed8" },
+  "Respiratory":             { bg: "#ccfbf1", text: "#0f766e" },
+  "Ophthalmology":           { bg: "#f3e8ff", text: "#4338ca" },
+  "General":                 { bg: "#f1f5f9", text: "#475569" }
+};
+
+function getCatColor(cat) {
+  return categoryColors[cat] || { bg: "#f1f5f9", text: "#475569" };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER FUNCTIONS
+═══════════════════════════════════════════════════════════════ */
+
+// ── 5Ms Cards ────────────────────────────────────────────────
+function renderFiveMs() {
+  const grid = document.getElementById('fiveMsGrid');
+  grid.innerHTML = fiveMsData.map(m => `
+    <div class="m-card" id="mcard-${m.id}" style="--card-color:${m.color}" onclick="toggleMCard('${m.id}')" role="button" tabindex="0" aria-expanded="false" aria-label="${m.title} - click to expand">
+      <div class="m-card-header">
+        <div class="m-icon" style="background:${m.bg};color:${m.color}">${m.emoji}</div>
+        <div class="m-label">${m.label}</div>
+        <div class="m-title">${m.title}</div>
+        <span class="m-chevron">▼</span>
+      </div>
+      <div class="m-card-body">
+        <div class="m-subtitle" style="color:${m.color}">Clinical Triggers</div>
+        ${m.triggers.map(t => `<div class="m-trigger">${t}</div>`).join('')}
+        <div class="m-subtitle" style="color:${m.color}">Red Flag Indicators</div>
+        ${m.indicators.map(i => `<div class="m-trigger">${i}</div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  // keyboard accessibility
+  grid.querySelectorAll('.m-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+}
+
+function toggleMCard(id) {
+  const card = document.getElementById('mcard-' + id);
+  const wasActive = card.classList.contains('active');
+  document.querySelectorAll('.m-card').forEach(c => {
+    c.classList.remove('active');
+    c.setAttribute('aria-expanded', 'false');
+  });
+  if (!wasActive) {
+    card.classList.add('active');
+    card.setAttribute('aria-expanded', 'true');
+  }
+}
+
+// ── 8-Step Accordion ─────────────────────────────────────────
+function renderSteps() {
+  const accordion = document.getElementById('stepsAccordion');
+  accordion.innerHTML = stepsData.map(step => `
+    <div class="step-item" id="step-${step.number}" role="region" aria-label="Step ${step.number}: ${step.title}">
+      <div class="step-header" onclick="toggleStep(${step.number})" role="button" tabindex="0" aria-expanded="false">
+        <div class="step-number">${step.number}</div>
+        <div class="step-meta">
+          <div class="step-title">${step.title}</div>
+          <div class="step-subtitle">${step.subtitle}</div>
+        </div>
+        <span class="step-phase" style="background:${step.phaseBg};color:${step.phaseColor}">${step.phase}</span>
+        <span class="step-chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="step-body-grid">
+          <div class="step-field">
+            <div class="step-field-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              Action Items
+            </div>
+            <ul>${step.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+          </div>
+          <div class="step-field">
+            <div class="step-field-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              IPC Consultation
+            </div>
+            <div class="ipc-tags">
+              ${step.ipc.map(role => `<span class="step-ipc-badge ${getIpcClass(role)}">${role}</span>`).join('')}
+            </div>
+            <div class="step-field-label" style="margin-top:12px">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Clinical Notes
+            </div>
+            <p>${step.notes}</p>
+            <div class="step-chapter-ref">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              ${step.chapter}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  accordion.querySelectorAll('.step-header').forEach(header => {
+    header.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        header.click();
+      }
+    });
+  });
+}
+
+function getIpcClass(role) {
+  const map = {
+    'GP': 'ipc-gp',
+    'Nurse': 'ipc-nurse',
+    'Pharmacist': 'ipc-pharmacist',
+    'Patient/Carer': 'ipc-patient',
+    'Specialist': 'ipc-specialist',
+    'Geriatrician': 'ipc-specialist',
+    'Allied Health': 'ipc-allied'
+  };
+  return map[role] || 'ipc-pharmacist';
+}
+
+function toggleStep(num) {
+  const item = document.getElementById('step-' + num);
+  const wasActive = item.classList.contains('active');
+  document.querySelectorAll('.step-item').forEach(i => {
+    i.classList.remove('active');
+    i.querySelector('.step-header').setAttribute('aria-expanded', 'false');
+  });
+  if (!wasActive) {
+    item.classList.add('active');
+    item.querySelector('.step-header').setAttribute('aria-expanded', 'true');
+  }
+}
+
+// ── Database Table ────────────────────────────────────────────
+let activeCategory = 'All';
+
+function getUniqueCategories() {
+  return ['All', ...new Set(deprescribingData.map(d => d.category))];
+}
+
+function renderCategoryFilters() {
+  const container = document.getElementById('categoryFilters');
+  const cats = getUniqueCategories();
+  container.innerHTML = cats.map(cat => `
+    <button class="filter-btn ${cat === activeCategory ? 'active' : ''}"
+      onclick="filterByCategory('${cat}')"
+      aria-pressed="${cat === activeCategory}"
+    >${cat}</button>
+  `).join('');
+}
+
+function filterByCategory(cat) {
+  activeCategory = cat;
+  renderCategoryFilters();
+  renderTable(getFilteredData());
+}
+
+function getFilteredData() {
+  if (activeCategory === 'All') return deprescribingData;
+  return deprescribingData.filter(d => d.category === activeCategory);
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('dbTableBody');
+  const shown = document.getElementById('dbCountShown');
+  const total = document.getElementById('dbCountTotal');
+
+  shown.textContent = data.length;
+  total.textContent = deprescribingData.length;
+
+  if (data.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--gray-400)">No entries match the selected category.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = data.map(d => {
+    const col = getCatColor(d.category);
+    return `
+      <tr>
+        <td>
+          <span class="cat-tag" style="background:${col.bg};color:${col.text}">${d.category}</span><br>
+          <strong style="font-size:0.85rem">${d.medicine}</strong>
+        </td>
+        <td>${d.when}</td>
+        <td>${d.how}</td>
+        <td>${d.monitoring}</td>
+        <td><span class="evidence-tag">✓ ${d.evidence}</span></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEARCH LOGIC
+═══════════════════════════════════════════════════════════════ */
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function highlight(text, query) {
+  if (!query) return text;
+  const escaped = escapeRegex(query);
+  const regex = new RegExp(`(${escaped})`, 'gi');
+  return text.replace(regex, '<mark class="highlight">$1</mark>');
+}
+
+function searchMedicines(query) {
+  if (!query || query.trim().length < 2) return [];
+  const terms = query.trim().toLowerCase().replace(/\s+/g, ' ').split(' ').filter(t => t.length >= 2);
+  if (terms.length === 0) return [];
+  return deprescribingData.filter(d => {
+    const haystack = [d.medicine || '', d.category || '', d.when || '', d.how || '', d.monitoring || '', d.evidence || ''].join(' ').toLowerCase();
+    return terms.every(term => haystack.includes(term));
+  });
+}
+
+function renderSearchResults(query, results) {
+  const section = document.getElementById('searchResults');
+  const body = document.getElementById('searchResultsBody');
+
+  if (!query || query.trim().length < 2) {
+    section.classList.remove('active');
+    body.innerHTML = '';
+    return;
+  }
+
+  section.classList.add('active');
+
+  if (results.length === 0) {
+    body.innerHTML = `
+      <div class="no-results">
+        <div class="no-results-icon">🔍</div>
+        <h3>No results found for "${query}"</h3>
+        <p>Try searching for a different medicine name, drug class, or category.</p>
+      </div>
+    `;
+    return;
+  }
+
+  const q = query.trim();
+  body.innerHTML = `
+    <div class="search-results-header">
+      Found <span>${results.length}</span> result${results.length !== 1 ? 's' : ''} for "<strong>${q}</strong>"
+    </div>
+    ${results.map(d => {
+      const col = getCatColor(d.category);
+      return `
+        <div class="result-card">
+          <div class="result-card-header">
+            <div class="result-medicine">${highlight(d.medicine, q)}</div>
+            <span class="result-category" style="background:${col.bg};color:${col.text}">${d.category}</span>
+          </div>
+          <div class="result-grid">
+            <div class="result-field">
+              <div class="result-field-label">When to Deprescribe</div>
+              <div class="result-field-value">${highlight(d.when, q)}</div>
+            </div>
+            <div class="result-field">
+              <div class="result-field-label">How to Deprescribe</div>
+              <div class="result-field-value">${highlight(d.how, q)}</div>
+            </div>
+            <div class="result-field">
+              <div class="result-field-label">Monitoring</div>
+              <div class="result-field-value">${highlight(d.monitoring, q)}</div>
+            </div>
+            <div class="result-field">
+              <div class="result-field-label">Evidence</div>
+              <div class="result-field-value" style="color:var(--green);font-weight:600">${highlight(d.evidence, q)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('')}
+  `;
+}
+
+// ── Search Input Handler ──────────────────────────────────────
+let searchTimeout;
+
+document.getElementById('searchInput').addEventListener('input', function () {
+  const query = this.value;
+  const clearBtn = document.getElementById('searchClear');
+  clearBtn.style.display = query.length > 0 ? 'block' : 'none';
+
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    const results = searchMedicines(query);
+    renderSearchResults(query, results);
+  }, 180);
+});
+
+document.getElementById('searchClear').addEventListener('click', function () {
+  document.getElementById('searchInput').value = '';
+  this.style.display = 'none';
+  renderSearchResults('', []);
+  document.getElementById('searchInput').focus();
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   INITIALISE APPLICATION
+═══════════════════════════════════════════════════════════════ */
+(function init() {
+  renderFiveMs();
+  renderSteps();
+  renderCategoryFilters();
+  renderTable(deprescribingData);
+})();
+</script>
+</body>
+</html>
