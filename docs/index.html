@@ -942,6 +942,7 @@ const deprescribingData = [
   {
     category: "General",
     medicine: "Polypharmacy / Multiple Drug Classes",
+    keywords: "polypharmacy multiple medications drug review inappropriate prescribing cascade adverse drug event ade adwe frailty beers criteria stopp start pim medication reconciliation deprescribing older adults",
     when: "No clear indication, obvious contraindication, or inappropriate prescribing cascade; adverse effects or interactions outweigh the potential benefits; used for symptomatic relief where symptoms are resolved and unlikely to recur; or used for prevention when the potential benefits are uncertain or unlikely to be realised.",
     how: "Develop an individualised deprescribing plan. For medicines where adverse drug withdrawal events (ADWEs) or disease recurrence are likely, taper the dose by halving it at 2-4 week intervals until half of the lowest standard dose formulation is reached, then cease. Consider switching from regular to PRN dosing. Up to three medicines may be deprescribed simultaneously if practical and unlikely to cause ADWEs.",
     monitoring: "Closely monitor for ADWEs and health-related outcomes every 2 weeks following each dose adjustment until at least 4 weeks after the medicine is fully discontinued. Then monitor monthly for 3 months, followed by 6-monthly thereafter.",
@@ -950,22 +951,25 @@ const deprescribingData = [
   {
     category: "Gastrointestinal",
     medicine: "Proton Pump Inhibitors / PPIs (Omeprazole, Esomeprazole, Pantoprazole, Lansoprazole)",
+    keywords: "ppi omeprazole esomeprazole pantoprazole lansoprazole rabeprazole nexium somac losec pariet gastric acid ulcer heartburn reflux gerd gastrointestinal gastro dyspepsia stomach 8 weeks hyperacidity rebound h2ra famotidine c diff hypomagnesaemia pneumonia bone fracture",
     when: "After short-term indication: GORD (4-8 weeks), peptic ulcer disease (4-8 weeks), H. pylori eradication (2 weeks), ICU stress ulcer prophylaxis (upon ICU discharge). Also reassess if: no clear indication; frail older adult with CKD (hypomagnesaemia, C. difficile, bone fracture, pneumonia risk); NSAID cover where NSAID can be ceased; or PPI prescribed as part of a prescribing cascade.",
-    how: "Step-down tapering: omeprazole 40mg -> 20mg -> 10mg every 2 weeks (do not crush enteric-coated tablets). After step-down, trial on-demand use (maximum 4 weeks). Can use H2RA (famotidine 20mg BD) as bridge. Antacids/alginates for symptomatic relief. Slower taper for high baseline doses. Note: switching brand does not change the taper schedule.",
+    how: "Step-down tapering: omeprazole 40mg -> 20mg -> 10mg every 2 weeks (do not crush enteric-coated tablets). After step-down, trial on-demand use (maximum 4 weeks). Can use H2RA (famotidine 20mg BD) as bridge. Antacids/alginates for symptomatic relief. Slower taper for high baseline doses.",
     monitoring: "Monitor for symptom recurrence (heartburn, regurgitation, dysphagia) and rebound acid hypersecretion every 2 weeks during taper until 8 weeks post-cessation, then monthly for 3 months, then 6-monthly. Warn patient rebound symptoms typically resolve within 4-8 weeks.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Gastrointestinal",
-    medicine: "Prochlorperazine",
+    medicine: "Prochlorperazine (Stemetil)",
+    keywords: "prochlorperazine stemetil nausea vomiting vertigo dizziness antiemetic phenothiazine dopamine tardive dyskinesia withdrawal parkinsonism extrapyramidal",
     when: "Following short-term indications (e.g. acute vertigo resolving in hours to days), no clear indication, or for drug-induced nausea/vomiting/dizziness where the original drug can be suitably reduced or replaced.",
     how: "Reduce dosing frequency every 1-2 weeks (e.g. from TDS to BD, then OD, then cease) and switch to on-demand or intermittent use at the lowest effective dose.",
-    monitoring: "Monitor for disease exacerbations or adverse drug withdrawal events (e.g. withdrawal-emergent abnormal movements) every 2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly.",
+    monitoring: "Monitor for disease exacerbations or adverse drug withdrawal events (e.g. withdrawal-emergent abnormal movements, tardive dyskinesia) every 2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Gastrointestinal",
-    medicine: "Macrogol laxatives",
+    medicine: "Macrogol laxatives (Movicol, Osmolax)",
+    keywords: "macrogol movicol osmolax lax-sachets constipation laxative osmotic stool bowel function motility polyethylene glycol PEG",
     when: "Without an ongoing indication in people who are asymptomatic, or for drug-induced constipation where the original drug can be suitably reduced, discontinued, or replaced.",
     how: "Reduce by one sachet and then alternate-day dosing every 1-2 weeks. Switch to on-demand use at the lowest effective dose. Discontinue once regular bowel movements occur on alternate-day dosing.",
     monitoring: "Monitor for recurrence of constipation following each dose adjustment. Monitor for changes in mobility, fluid and fibre intake.",
@@ -974,6 +978,7 @@ const deprescribingData = [
   {
     category: "Gastrointestinal",
     medicine: "Potassium supplements",
+    keywords: "potassium supplement hypokalaemia diuretic electrolyte weakness cramps palpitations kcl slow-k span-k",
     when: "Without an ongoing indication (e.g. past use for diuretic-induced hypokalaemia and current normal serum potassium), for drug-induced hypokalaemia where original drug can be ceased, or with no clear indication.",
     how: "Discontinue without the need for tapering. If tapering is preferred for high doses (> 1200 mg TDS), reduce dose by 50% every 2 weeks to minimise the risk of hypokalaemia.",
     monitoring: "Reassess serum potassium concentration once, one week after deprescribing. Periodic monitoring for dietary changes and symptoms of hypokalaemia (e.g. muscle weakness, cramps, palpitations).",
@@ -982,6 +987,7 @@ const deprescribingData = [
   {
     category: "Blood & Blood-Forming",
     medicine: "Antithrombotic agents (Anticoagulants and Antiplatelets)",
+    keywords: "anticoagulant antiplatelet warfarin apixaban rivaroxaban dabigatran aspirin clopidogrel xarelto eliquis pradaxa coumadin plavix bleeding stroke atrial fibrillation af vte dvt pe dapt triple therapy doac cha2ds2-vasc",
     when: "Anticoagulants (warfarin, apixaban, rivaroxaban, dabigatran): short-term VTE completed (6-12 months); AF with CHA2DS2-VASc 0-1 male / 1-2 female; advanced CKD where bleeding risk outweighs benefit; warfarin in stage 4-5 CKD. Antiplatelets: aspirin for primary prevention in >= 70 years (NNT high, NNH low); DAPT beyond 6-12 months post-ACS; triple therapy (anticoagulant + DAPT) beyond 1-4 weeks post-PCI.",
     how: "Cease anticoagulants and/or antiplatelets without the need for tapering. For DOAC cessation, no bridging required. For warfarin, cease and allow INR to normalise.",
     monitoring: "Closely monitor ongoing risk factors (bleeding and cardiovascular events) at least monthly for the first 6 months, then 6-monthly. Warn patients to seek medical attention for dyspnoea, chest pain, or calf pain.",
@@ -990,6 +996,7 @@ const deprescribingData = [
   {
     category: "Blood & Blood-Forming",
     medicine: "Iron / Vitamin B12 (anti-anaemic preparations)",
+    keywords: "iron supplement b12 oral iron ferrous sulfate fumarate cyanocobalamin blood anaemia anemia red blood cell fbc ferritin store bleeding resolved therapeutic course correction glossitis neuropathy",
     when: "If haemoglobin and ferritin/B12 levels are within an acceptable range and there is no ongoing indication (e.g. underlying cause addressed), drug-induced (e.g. metformin/PPI use) where original drug modified, or no documented history of deficiency.",
     how: "Cease iron and/or vitamin B12 therapy without the need for tapering. Assess nutritional status prior to deprescribing.",
     monitoring: "Offer laboratory monitoring of complete blood count, iron studies/B12 periodically (e.g. 11 months post-discontinuation or sooner if symptomatic). Monitor for fatigue, shortness of breath, glossitis, neuropathy.",
@@ -998,6 +1005,7 @@ const deprescribingData = [
   {
     category: "Cardiovascular",
     medicine: "Digoxin / Sotalol",
+    keywords: "digoxin sotalol heart failure atrial fibrillation rate control arrhythmia bradycardia narrow therapeutic index toxicity nausea yellow visual halos",
     when: "Digoxin: HFrEF stabilised on GDMT, AF with target HR achieved with other agents, or experiencing adverse effects (nausea, visual changes, bradycardia). Sotalol: permanent AF with no intention to restore sinus rhythm, or stabilised in normal sinus rhythm for 2-3 months.",
     how: "Digoxin: abrupt cessation if subtherapeutic or toxicity. If tapering, reduce by 50% every 2 weeks until <= 62.5 mcg. Sotalol: gradual tapering of dose by 25% every 1-2 weeks.",
     monitoring: "Monitor changes in HR and/or signs of cardiac decompensation every 1-2 weeks until at least 4 weeks post-cessation, then at 3 and 6 months, then 6-monthly.",
@@ -1005,7 +1013,8 @@ const deprescribingData = [
   },
   {
     category: "Cardiovascular",
-    medicine: "Organic Nitrates",
+    medicine: "Organic Nitrates (Isosorbide Mononitrate, GTN patch)",
+    keywords: "nitrate isosorbide mononitrate imdur glyceryl trinitrate gtn patch angina coronary artery disease chest pain transdermal headache tolerance nitrate-free period",
     when: "Taking long-acting nitrates in combination with beta-blockers or CCBs for stable coronary heart disease who have not experienced angina symptoms or required short-acting nitrates for at least 6 months.",
     how: "Gradually reduce the dose (e.g. 120mg daily -> 60mg -> 30mg -> cease). For transdermal, gradually reduce patch strength. Ensure short-acting nitrates are available PRN.",
     monitoring: "Monitor blood pressure and recurrence of angina symptoms (e.g. weekly for at least 2 weeks after withdrawal).",
@@ -1014,6 +1023,7 @@ const deprescribingData = [
   {
     category: "Cardiovascular",
     medicine: "Antihypertensives (ACEi, ARB, CCB, Beta-blocker, Alpha-blocker)",
+    keywords: "antihypertensive blood pressure hypertension acei arb ccb beta-blocker alpha-blocker amlodipine norvasc perindopril coversyl ramipril irbesartan avapro atenolol metoprolol prazosin minipress orthostatic hypotension falls syncope systolic diastolic sbp dbp",
     when: "Relative contraindications (e.g. combination ACEi + ARB, beta-blockers in bradycardia) or adverse effects outweigh benefits (e.g. SBP < 150 mmHg in people >= 80 years with orthostatic hypotension, recurrent falls, or frailty). Target SBP < 150 mmHg in >= 80 years before considering taper.",
     how: "Deprescribe one agent at a time. Beta-blockers and centrally acting agents: halve daily dose every 2 weeks. Recommended deprescribing sequence: 1. Loop diuretics/centrally acting/alpha-blockers 2. Aldosterone antagonists 3. Beta-blockers/thiazides 4. CCBs 5. ACEi/ARBs (last due to renoprotective benefit).",
     monitoring: "Self-monitor for orthostatic symptoms, angina, BP, HR. Monitor falls and cardiovascular risk factors at least monthly for 6 months, then 6-monthly. Standing BP measurement at each review.",
@@ -1022,6 +1032,7 @@ const deprescribingData = [
   {
     category: "Cardiovascular",
     medicine: "Diuretics (Furosemide, Hydrochlorothiazide, Indapamide, Spironolactone)",
+    keywords: "diuretic furosemide frusemide lasix hydrochlorothiazide hctz indapamide natrilix spironolactone spirono aldactone oedema fluid overload heart failure urinary incontinence hyponatraemia hypokalaemia renal",
     when: "No current indication (HF, CKD, HTN), adverse effects (e.g. severe urinary incontinence, hyponatraemia, gout) outweigh benefits, HTN control criteria met, or relative contraindications (e.g. drug-induced oedema where causative drug ceased).",
     how: "Furosemide: < 40mg cease directly; 40mg halve for 1 week; 80mg halve for 2 weeks; > 80mg reduce by 40mg every 2 weeks. Thiazides: taper before loop diuretic if combined. Taper dose while monitoring fluid status and daily weight.",
     monitoring: "Monitor BP, peripheral oedema, heart failure signs, and body weight weekly during tapering until 3 months. Monitor serum potassium and renal function. Alert patient to report ankle swelling or sudden weight gain (> 2kg in 2 days).",
@@ -1030,6 +1041,7 @@ const deprescribingData = [
   {
     category: "Cardiovascular",
     medicine: "Lipid-modifying agents / Statins (Atorvastatin, Rosuvastatin, Simvastatin)",
+    keywords: "statin atorvastatin rosuvastatin simvastatin crestor lipitor zocor pravastatin cholesterol lipid ldl cardiovascular prevention myopathy myalgia myositis rhabdomyolysis ck primary secondary prevention frailty life expectancy",
     when: "Primary prevention in people aged 65-79 with 5-year CVD risk < 5%, or < 10% with zero CAC score (coronary artery calcium), or aged >= 80 where adverse risks outweigh benefits. Advanced life-limiting illness (life expectancy < 12 months). Statin-related myopathy or intolerance. Note: secondary prevention statins (post-MI, stroke, established CVD) should generally be continued.",
     how: "Discontinue lipid-lowering agents without the need for tapering.",
     monitoring: "Monitor lipid concentrations annually. Review cardiovascular risk profile at 6-12 months. No rebound effect expected on cessation.",
@@ -1038,6 +1050,7 @@ const deprescribingData = [
   {
     category: "Dermatological",
     medicine: "Topical Corticosteroids (skin)",
+    keywords: "topical corticosteroid steroid cream ointment eczema dermatitis psoriasis betamethasone diprosone triamcinolone kenacort hydrocortisone mometasone elocon locoid skin atrophy tachyphylaxis withdrawal syndrome redness burning",
     when: "No ongoing indication (asymptomatic after uninterrupted treatment using appropriate potency) or unclear indication.",
     how: "Discontinue topical corticosteroids without the need for tapering when the flare is fully resolved (itch-free, inflammation resolved). Switch to PRN or intermittent use (e.g. 2 days/week) for maintenance. Continue use of emollients.",
     monitoring: "Advise individuals to report symptoms of recurrence or topical corticosteroid withdrawal syndrome (e.g. red or darker burning skin, papulopustular rashes).",
@@ -1046,6 +1059,7 @@ const deprescribingData = [
   {
     category: "Genitourinary",
     medicine: "Estrogens (Systemic and Vaginal MHT)",
+    keywords: "estrogen estradiol oestrogen menopause mht hrt evorel progynova premarin vagifem oestrioll hot flush vaginal dryness genitourinary fracture breast cancer clot dvt hormone replacement therapy",
     when: "Systemic MHT: menopausal symptoms have resolved or improved. Vaginal MHT: genitourinary syndrome of menopause symptoms have resolved or improved.",
     how: "Stop abruptly without tapering; if preferred, oral: reduce 1 dose/week every 2-4 weeks. Transdermal: gradually lower patch strength over 3-6 months. Topical: reduce frequency every 2-4 weeks.",
     monitoring: "Periodic evaluation of symptom control, ongoing benefit-risk profile, fracture risk, and bone mineral density if indicated.",
@@ -1054,6 +1068,7 @@ const deprescribingData = [
   {
     category: "Genitourinary",
     medicine: "Anticholinergics / Antimuscarinics (Overactive Bladder: Oxybutynin, Solifenacin, Tolterodine)",
+    keywords: "anticholinergic antimuscarinic overactive bladder oab oxybutynin ditropan solifenacin vesicare tolterodine detrusitol darifenacin urinary urgency frequency incontinence nocturia cognition acb anticholinergic burden dementia delirium",
     when: "Presence of cognitive impairment, delirium, dementia, or high fall risk; no clear indication or benefit; or drug-induced symptoms where original drug can be modified. High anticholinergic burden - listed in Beers Criteria and STOPP. Particularly oxybutynin (highest CNS penetrance) in older adults.",
     how: "Generally discontinue without tapering. For high-dose therapy or patient preference, gradually reduce the dose or dosing frequency per week. Non-pharmacological measures: bladder training, pelvic floor exercises.",
     monitoring: "Periodic evaluation of individual preferences, psychological effects, and monitor for symptom recurrence (e.g. urgency, frequency, incontinence, nocturia). Assess cognitive function after cessation.",
@@ -1062,6 +1077,7 @@ const deprescribingData = [
   {
     category: "Genitourinary",
     medicine: "Drugs used in Benign Prostatic Hypertrophy / BPH (Tamsulosin, Alfuzosin, Finasteride)",
+    keywords: "benign prostatic hypertrophy bph tamsulosin flomax alfuzosin uroplease finasteride proscar dutasteride avodart prostate voiding nocturia floppy iris alpha-blocker 5-alpha reductase hypotension syncope",
     when: "Symptoms have resolved or improved (e.g. post-TURP or prostatectomy) or if adverse effects/interactions (e.g. symptomatic orthostatic hypotension, syncope, floppy iris syndrome risk) outweigh potential benefits.",
     how: "Deprescribe without tapering. If preferred, taper by reducing dose/frequency per week. Advise lifestyle modifications (e.g. timed voiding, limit fluids at night).",
     monitoring: "Monitor for symptom recurrence (urgency, frequency, nocturia, weak stream). Check BP if remaining on alpha-blockers. Advise patient to record alpha-blocker use in medical alert for future eye surgery (floppy iris syndrome).",
@@ -1070,22 +1086,25 @@ const deprescribingData = [
   {
     category: "Endocrine & Hormonal",
     medicine: "Drugs used in diabetes (Oral & Injectable: Metformin, Sulfonylureas, SGLT2i, GLP-1, Insulin)",
-    when: "If the two most recent consecutive HbA1c levels are below the individualised target (prioritising deprescribing insulin first, then sulfonylureas), or in the presence of side effects impacting quality of life (e.g. SGLT2i genitourinary infections, metformin GI intolerance or weight loss). Frail older adults: relax HbA1c target to < 8-8.5%, deprescribe agents causing hypoglycaemia.",
-    how: "Oral medicines: discontinue without the need for tapering, one agent at a time, in consultation with the diabetes care team. Deprescribe combination therapy one at a time, prioritising hypoglycaemia risk agents (insulin > sulfonylureas > DPP4i > SGLT2i > metformin). Seek endocrinology advice for insulin dose tapering.",
+    keywords: "sulfonylurea gliclazide diamicron glimepiride amaryl insulin metformin glucophage sglt2 jardiance empagliflozin glp-1 victoza ozempic semaglutide dpp4 januvia sitagliptin diabetes glycaemic blood glucose bgl hba1c frail elderly renal impairment hypoglycemia hypoglycaemia coma confusion falls drop",
+    when: "If the two most recent consecutive HbA1c levels are below the individualised target (prioritising deprescribing insulin first, then sulfonylureas), or in the presence of side effects impacting quality of life. Frail older adults: relax HbA1c target to < 8-8.5%, deprescribe agents causing hypoglycaemia.",
+    how: "Oral medicines: discontinue without the need for tapering, one agent at a time, in consultation with the diabetes care team. Prioritise hypoglycaemia risk agents (insulin > sulfonylureas > DPP4i > SGLT2i > metformin). Seek endocrinology advice for insulin dose tapering.",
     monitoring: "Monthly monitoring of the risk-benefit profile for at least 3 months, then 6-monthly. Advise daily self-monitoring of BGL during tapering. Review HbA1c once after ~3 months, then twice a year.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Endocrine & Hormonal",
     medicine: "Corticosteroids - Systemic (Prednisone, Prednisolone, Dexamethasone)",
+    keywords: "prednisone prednisolone dexamethasone corticosteroid steroid systemic inflammation polymyalgia rheumatica pmr autoimmune copd adrenal suppression hpa axis cortisol withdrawal syndrome fatigue myalgia",
     when: "Long-term use for COPD (not indicated for systemic), autoimmune conditions in sustained remission (>= 12 months), or polymyalgia rheumatica after >= 12 months therapy without active disease signs (normal ESR/CRP).",
-    how: "Reduce by prednisone equivalent of 10-20% per month (not per week for long-term use). May require very gradual tapering (e.g. 1mg every 4-8 weeks) when approaching physiological dosing (5-7.5mg/day). Cortisol stimulation test if HPA suppression suspected.",
+    how: "Reduce by prednisone equivalent of 10-20% per month. May require very gradual tapering (e.g. 1mg every 4-8 weeks) when approaching physiological dosing (5-7.5mg/day). Cortisol stimulation test if HPA suppression suspected.",
     monitoring: "Monitor for glucocorticoid withdrawal syndrome (sleep disturbance, mood changes), adrenal insufficiency (myalgia, fatigue, hypotension), and condition recurrence. Monthly ESR/CRP for 3 months then 6-monthly for PMR.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Endocrine & Hormonal",
-    medicine: "Levothyroxine (Thyroxine)",
+    medicine: "Levothyroxine (Thyroxine / Oroxine / Eutroxsig)",
+    keywords: "levothyroxine thyroxine t4 thyroid hypothyroidism tsh subclinical oroxine eutroxsig free t4 weight gain fatigue cold intolerance constipation",
     when: "Asymptomatic and stable on a low dose (25-50 mcg), unclear indication (e.g. subclinical hypothyroidism with TSH 4-10 mIU/L), or drug-induced where original drug modified.",
     how: "Reduce dose by ~50% if baseline TSH is within acceptable range. After 6 weeks, if TSH acceptable, discontinue completely. Reassess free T4 and TSH at 6-week intervals.",
     monitoring: "Monitor for symptoms of hypothyroidism (fatigue, weight gain, cold intolerance, constipation, depression). Review TSH and free T4 six weeks after each dose adjustment.",
@@ -1094,6 +1113,7 @@ const deprescribingData = [
   {
     category: "Endocrine & Hormonal",
     medicine: "Teriparatide (Forteo)",
+    keywords: "teriparatide forteo parathyroid hormone pth osteoporosis fracture pbs bone anabolic 24 months life-time limit transition bisphosphonate",
     when: "Taking teriparatide for 24 months or longer (due to limited efficacy/safety data beyond 24 months and PBS lifetime subsidisation limit of 24 months).",
     how: "Cease without the need for tapering. Transition to bisphosphonate therapy for at least 12 months to preserve bone mineral density gains.",
     monitoring: "Monitor fracture risk (FRAX/bone turnover markers) monthly for 6 months, then 6-monthly. Assess BMD using DXA once after 12 months of discontinuation.",
@@ -1101,7 +1121,8 @@ const deprescribingData = [
   },
   {
     category: "Musculoskeletal",
-    medicine: "NSAIDs - Non-steroidal Anti-inflammatory Drugs (Ibuprofen, Naproxen, Diclofenac, Celecoxib)",
+    medicine: "NSAIDs (Ibuprofen, Naproxen, Diclofenac, Celecoxib)",
+    keywords: "nsaid ibuprofen naproxen diclofenac celecoxib voltaren nurofen naprosyn celebrex gi bleeding peptic ulcer renal impairment cardiovascular anti-inflammatory pain arthritis cox-2 meloxicam mobic indometacin",
     when: "Long-term use (> 4 weeks), due to the high risk of severe gastrointestinal complications (ulcer, GI bleeding), cardiovascular events, and renal impairment adverse effects. Particularly if: eGFR < 30 mL/min, concurrent anticoagulation or antiplatelet therapy, age >= 65 years with prior GI ulcer, or high cardiovascular risk.",
     how: "Discontinue without the need for tapering. If preferred, reduce dose by 25-50% every 1-2 weeks then cease completely. Switch to PRN/topical NSAIDs (diclofenac gel) or alternative therapies (paracetamol, physiotherapy, capsaicin cream).",
     monitoring: "Advise patients to report symptoms of pain, or changes in function/quality of life. Monitor renal function and BP if on concurrent antihypertensives.",
@@ -1110,6 +1131,7 @@ const deprescribingData = [
   {
     category: "Musculoskeletal",
     medicine: "Anti-gout preparations (Allopurinol, Febuxostat, Colchicine)",
+    keywords: "allopurinol febuxostat colchicine gout uric acid urate hyperuricaemia xanthine oxidase inhibitor flare prophylaxis zyloprim uloric remission tophi serum urate",
     when: "Urate-lowering therapy (allopurinol/febuxostat): clinical remission >= 1 year, normal serum uric acid (< 0.36 mmol/L), no tophi or flares. Colchicine: except when initiating ULT for short-term prophylaxis (~6 months).",
     how: "Halve the daily dose every 2 weeks, ensuring individuals remain symptom-free before initiating each taper. Cease completely once at half lowest dose formulation. Colchicine: reduce from 500 mcg BD to 500 mcg OD for 4 weeks then cease.",
     monitoring: "Monitor serum uric acid, renal function, and gout flares every 2 weeks for 1 month, then monthly for 3 months, then 6-monthly.",
@@ -1118,6 +1140,7 @@ const deprescribingData = [
   {
     category: "Musculoskeletal",
     medicine: "Calcium & Vitamin D supplements",
+    keywords: "calcium vitamin d supplement osteoporosis fracture bone d3 cholecalciferol hypercalcaemia kidney stones nephrolithiasis dairy diet sunlight 25-oh vitamin d nmol",
     when: "Calcium: community-dwelling people with dietary intake > 1,300 mg/day from food. Vitamin D: community-dwelling people with optimal serum 25-OH vitamin D levels (>= 50 nmol/L) not at fracture risk (no osteoporosis, no fall history, adequate sun exposure).",
     how: "Discontinue without the need for tapering.",
     monitoring: "Periodic monitoring for changes in dietary calcium intake and/or sunlight exposure. Implement multifactorial approaches to reduce fall and fracture risk.",
@@ -1125,39 +1148,44 @@ const deprescribingData = [
   },
   {
     category: "Musculoskeletal",
-    medicine: "Denosumab (Prolia) - cessation requires mandatory bisphosphonate transition",
-    when: "Severe adverse effects (osteonecrosis of the jaw / MRONJ, atypical femur fracture), advanced CKD stage 4-5 (severe hypocalcaemia risk), advanced frailty or terminal illness where fracture prevention benefit is unlikely, or patient choice after informed discussion. CRITICAL WARNING: Denosumab cessation without transition to bisphosphonate causes rapid rebound bone loss and multiple vertebral fractures within 12 months.",
-    how: "NEVER cease abruptly without transition. Mandatory transition protocol: (1) Administer last denosumab dose as planned. (2) Initiate oral bisphosphonate 6 months after last denosumab injection: alendronate 70mg weekly (PBS-subsidised) or risedronate 35mg weekly. (3) Continue bisphosphonate for >= 12 months minimum. (4) If oral bisphosphonate intolerable: IV zoledronic acid 5mg infusion 6 months after last denosumab dose. Dental review before transitioning.",
-    monitoring: "Bone turnover markers (CTX, P1NP) 3-6 months post-last dose - should decrease on bisphosphonate. DXA at 12-18 months post-transition. Serum calcium 1-2 weeks post-last injection. Alert patient/prescriber to seek urgent review if back/hip pain (rebound fracture risk). Annual dental review for MRONJ.",
+    medicine: "Denosumab (Prolia) - mandatory bisphosphonate transition required on cessation",
+    keywords: "denosumab prolia osteoporosis bone density fracture rebound vertebral vertebrae mronj osteonecrosis jaw calcium hypocalcaemia transition bisphosphonate subcutaneous injection rangi rankl 6 monthly",
+    when: "Severe adverse effects (MRONJ, atypical femur fracture), advanced CKD stage 4-5 (severe hypocalcaemia risk), advanced frailty or terminal illness where fracture prevention benefit is unlikely, or patient choice after informed discussion. CRITICAL WARNING: Denosumab cessation without transition to bisphosphonate causes rapid rebound bone loss and multiple vertebral fractures within 12 months.",
+    how: "NEVER cease abruptly without transition. Mandatory transition protocol: (1) Administer last denosumab dose as planned. (2) Initiate oral bisphosphonate 6 months after last denosumab injection: alendronate 70mg weekly or risedronate 35mg weekly. (3) Continue bisphosphonate for >= 12 months minimum. (4) If oral bisphosphonate intolerable: IV zoledronic acid 5mg infusion 6 months after last denosumab dose. Dental review before transitioning.",
+    monitoring: "Bone turnover markers (CTX, P1NP) 3-6 months post-last dose. DXA at 12-18 months post-transition. Serum calcium 1-2 weeks post-last injection. Alert patient/prescriber to seek urgent review if back/hip pain develops. Annual dental review for MRONJ.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Musculoskeletal",
     medicine: "Bisphosphonates - Drug Holiday (Alendronate, Risedronate, Zoledronic Acid)",
-    when: "Consider drug holiday after: (a) 5 years oral bisphosphonate (alendronate 70mg/week, risedronate 35mg/week or 150mg/month) OR (b) 3 consecutive annual zoledronic acid (5mg IV) infusions. Holiday is appropriate if: femoral neck T-score > -2.5, no prior hip or vertebral fractures, stable low-moderate FRAX 10-year risk (< 20% major osteoporotic fracture). CONTINUE therapy if: hip or vertebral fracture history, T-score <= -2.5, high FRAX risk, or chronic corticosteroid use > 7.5mg/day prednisone. Also cease if: eGFR < 30 (oral BP contraindicated), confirmed atypical femur fracture (subtrochanteric/diaphyseal), oesophageal achalasia, inability to remain upright 30 min (oral only).",
-    how: "Oral bisphosphonates: cease without tapering; residual anti-fracture effect persists 1-2 years (alendronate) to 1-3 years (risedronate) post-cessation due to skeletal retention. Drug holiday duration: 2-3 years, then reassess. IV zoledronic acid: defer next scheduled infusion; holiday duration 3 years, then reassess. Resume if: new fragility fracture, T-score decline > 0.1 g/cm2, or FRAX increase above treatment threshold.",
-    monitoring: "Annual FRAX reassessment during holiday. DXA every 2 years during holiday. Annual dental review (MRONJ risk persists post-cessation, higher risk for IV bisphosphonates). Monitor for prodromal atypical femur fracture symptoms (new thigh/groin pain) - warrants urgent X-ray/MRI of femur.",
+    keywords: "bisphosphonate alendronate risedronate zoledronic zolendronic acid fosamax actonel aclasta bone holiday drug holiday fracture density dexa dxa jaw mronj osteonecrosis femur atypical femur fracture long-term 5 years frax t-score osteoporosis",
+    when: "Consider drug holiday after: (a) 5 years oral bisphosphonate (alendronate 70mg/week, risedronate 35mg/week) OR (b) 3 consecutive annual zoledronic acid (5mg IV) infusions. Holiday appropriate if: femoral neck T-score > -2.5, no prior hip or vertebral fractures, stable low-moderate FRAX risk (< 20% major). CONTINUE if: hip/vertebral fracture history, T-score <= -2.5, high FRAX risk, or chronic corticosteroid > 7.5mg/day. Also cease if: eGFR < 30, confirmed atypical femur fracture, oesophageal achalasia.",
+    how: "Oral bisphosphonates: cease without tapering; residual anti-fracture effect persists 1-3 years post-cessation. Drug holiday duration: 2-3 years, then reassess. IV zoledronic acid: defer next scheduled infusion; holiday duration 3 years. Resume if: new fragility fracture, T-score decline > 0.1 g/cm2, or FRAX increase above treatment threshold.",
+    monitoring: "Annual FRAX reassessment during holiday. DXA every 2 years during holiday. Annual dental review (MRONJ risk persists post-cessation). Monitor for prodromal atypical femur fracture symptoms (new thigh/groin pain) - warrants urgent X-ray/MRI of femur.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Central Nervous System",
     medicine: "Opioids (Morphine, Oxycodone, Fentanyl, Codeine, Tramadol, Buprenorphine)",
-    when: "Chronic non-cancer pain (CNCP) with >= 4 weeks use and no clinically meaningful functional improvement, or where harms outweigh benefits: falls, sedation, cognitive impairment, respiratory depression, opioid-induced hyperalgesia, severe constipation, dependence. Cancer pain in remission. Comfort-focused/palliative care initiated (opioid review, not necessarily cessation). Codeine: particularly ineffective in poor CYP2D6 metabolisers; convert to alternative.",
+    keywords: "opioid analgesic morphine oxycodone fentanyl buprenorphine tramadol tapentadol codeine endone targin oxycontin panadeine sevredol durogesic norspan pain constipation sedation respiratory depression addiction dependence withdrawal sweat rhinorrhea tachycardia diarrhoea ome oral morphine equivalent naloxone nyxoid cows opioid-induced hyperalgesia oih chronic non-cancer pain cncp",
+    when: "Chronic non-cancer pain (CNCP) with >= 4 weeks use and no clinically meaningful functional improvement, or where harms outweigh benefits: falls, sedation, cognitive impairment, respiratory depression, opioid-induced hyperalgesia, severe constipation, dependence. Cancer pain in remission. Comfort-focused/palliative care initiated. Codeine: particularly ineffective in poor CYP2D6 metabolisers.",
     how: "Step 1: Calculate total 24-hour Oral Morphine Equivalent (OME). Step 2: Tapering rate - < 12 months use: reduce 5-10% OME/week; >= 12 months use: reduce 5-10% OME/month (slower if needed). Step 3: PBS Australian dose steps - Morphine IR (Sevredol) 5, 10, 20mg; Oxycodone IR (Endone) 5, 10, 20mg; Codeine 8, 15, 30mg; Tramadol IR 50, 100mg; Fentanyl patch 12, 25, 50, 75, 100 mcg/hr. Step 4: Convert transdermal to oral equivalent before tapering. Step 5: CRITICAL - do not restart at prior dose if ceased (tolerance lost within 3-7 days - overdose risk).",
-    monitoring: "Pain NRS/VAS and functional status (Brief Pain Inventory) at each review. COWS (Clinical Opiate Withdrawal Scale) every 2 weeks during taper. Monitor opioid withdrawal signs: sweating, yawning, rhinorrhoea, anxiety, GI cramping. Prescribe naloxone (Nyxoid/S8) and train patient/carer on use. Urine drug screen if diversion risk. Review 2-weekly during taper, monthly for 3 months, then 6-monthly.",
+    monitoring: "Pain NRS/VAS and functional status (Brief Pain Inventory) at each review. COWS (Clinical Opiate Withdrawal Scale) every 2 weeks during taper. Monitor opioid withdrawal signs: sweating, yawning, rhinorrhea, anxiety, GI cramping. Prescribe naloxone (Nyxoid/S8) and train patient/carer on use. Urine drug screen if diversion risk. Review 2-weekly during taper, monthly for 3 months, then 6-monthly.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Central Nervous System",
     medicine: "Gabapentinoids (Pregabalin / Lyrica, Gabapentin / Neurontin)",
-    when: "No demonstrated benefit after 2-3 months adequate trial for neuropathic pain, epilepsy, or generalised anxiety disorder (pregabalin PBS-subsidised for epilepsy and GAD only in Australia). Adverse effects outweigh benefits: dizziness, somnolence, falls, cognitive impairment, weight gain, peripheral oedema. High-risk patients: frail older adults, CKD (accumulation risk), concurrent CNS depressants (opioids + benzodiazepines + gabapentinoid = triple CNS depression risk).",
-    how: "Reduce dose by 25% every 1-2 weeks. Do NOT abruptly cease (risk of seizures, acute withdrawal, rebound pain/anxiety). PBS pregabalin dose steps: 300mg/day -> 225mg -> 150mg -> 75mg -> 25mg -> cease (25mg capsule available). Gabapentin: reduce by 100-300mg every 1-2 weeks; 100mg capsule for final step. Taper gabapentinoid before opioid if both being reduced simultaneously (unless opioid causing more harm).",
+    keywords: "gabapentin pregabalin lyrica neurontin neuropathic pain anxiety gad epilepsy seizure triple sedation dizziness falls weight gain oedema ckd renal dose accumulation pbs subsidised dependence withdrawal",
+    when: "No demonstrated benefit after 2-3 months adequate trial for neuropathic pain, epilepsy, or generalised anxiety disorder (pregabalin PBS-subsidised for epilepsy and GAD only in Australia). Adverse effects outweigh benefits: dizziness, somnolence, falls, cognitive impairment, weight gain, peripheral oedema. High-risk: frail older adults, CKD, concurrent CNS depressants (opioids + benzodiazepines + gabapentinoid = triple CNS depression risk).",
+    how: "Reduce dose by 25% every 1-2 weeks. Do NOT abruptly cease (risk of seizures, acute withdrawal, rebound pain/anxiety). PBS pregabalin dose steps: 300mg/day -> 225mg -> 150mg -> 75mg -> 25mg -> cease. Gabapentin: reduce by 100-300mg every 1-2 weeks; 100mg capsule for final step. Taper gabapentinoid before opioid if both being reduced simultaneously (unless opioid causing more harm).",
     monitoring: "Pain scores, anxiety (GAD-7), sleep quality, and balance/falls risk at each review. Monitor for withdrawal (agitation, insomnia, nausea, diaphoresis - onset within 12-48 hours of cessation). Renal function check (eGFR-guided dosing). Review every 2 weeks during taper, then monthly for 3 months.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Central Nervous System",
     medicine: "Non-opioid Analgesics (Paracetamol, Topical agents)",
+    keywords: "paracetamol acetaminophen panadol topical diclofenac voltaren gel capsaicin pain analgesic liver hepatic renal chronic pain prn",
     when: "Chronic use of paracetamol where no ongoing pain indication, or adverse effects in context of liver impairment or heavy alcohol use. Regular use without a clear chronic pain diagnosis. Topical NSAIDs (diclofenac gel) or capsaicin: no ongoing musculoskeletal indication.",
     how: "Paracetamol: tapering not required; reduce from regular to PRN dosing; cease if no longer needed. Topical NSAID/capsaicin: cease without tapering. Switch to non-pharmacological pain management (physiotherapy, hydrotherapy, cognitive pain therapy).",
     monitoring: "Monitor pain and function/quality of life every 2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly.",
@@ -1166,6 +1194,7 @@ const deprescribingData = [
   {
     category: "Central Nervous System",
     medicine: "Antiepileptics (Valproate, Carbamazepine, Lamotrigine, Levetiracetam, Phenytoin, Phenobarbital)",
+    keywords: "antiepileptic epilepsy seizure phenytoin dilantin levetiracetam keppra carbamazepine tegretol valproate epilim sodium valproate lamotrigine lamictal phenobarbital clonazepam gabapentin neuropathic pain breakthrough seizure log action plan therapeutic drug monitoring tdm",
     when: "Epilepsy: seizure-free for >= 2 years (consider driving implications - notify patient and licencing authority). Non-epilepsy indications (neuropathic pain, BPSD, mood stabiliser): no therapeutic benefit after 2-3 months trial or poorly tolerated.",
     how: "Epilepsy: reduce dose 10-25% monthly. Non-epilepsy: reduce dose by 25% every week. Slower tapers (up to 6 months) preferred for phenobarbital/clonazepam (physical dependence risk). Withdraw one antiepileptic at a time.",
     monitoring: "Monitor for symptom recurrence every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months. For epilepsy, ensure seizure action plan is in place before tapering. Therapeutic drug monitoring at each dose change for narrow therapeutic index agents (phenytoin, carbamazepine).",
@@ -1174,14 +1203,16 @@ const deprescribingData = [
   {
     category: "Central Nervous System",
     medicine: "Levodopa / Carbidopa (Sinemet, Madopar)",
-    when: "No clinically meaningful improvement in motor symptoms after >= 3 months of optimal dose therapy, intolerable non-motor side effects (psychosis, impulse control disorder, orthostatic hypotension), or adverse impact outweighs benefits.",
-    how: "Abrupt cessation if rapid assessment needed or significant toxicity. Otherwise, taper by 1 tablet or 100mg levodopa equivalent every 2 weeks until fully withdrawn. WARNING: abrupt cessation risks neuroleptic malignant syndrome-like reaction.",
+    keywords: "levodopa carbidopa sinemet madopar parkinson parkinson's disease anti-parkinson benserazide pramipexole mirapex rotigotine neupro rigidity tremor bradykinesia swallowing dysphagia palliative end of life visual hallucinations delirium orthostatic hypotension nms neuroleptic malignant syndrome",
+    when: "No clinically meaningful improvement in motor symptoms after >= 3 months of optimal dose therapy, intolerable non-motor side effects (psychosis, impulse control disorder, orthostatic hypotension), or adverse impact outweighs benefits. Also: advanced palliative care where comfort goals are primary, severe dysphagia making oral administration unsafe.",
+    how: "Abrupt cessation if rapid assessment needed or significant toxicity. Otherwise, taper by 1 tablet or 100mg levodopa equivalent every 2 weeks until fully withdrawn. WARNING: abrupt cessation risks neuroleptic malignant syndrome-like reaction (fever, rigidity, altered consciousness).",
     monitoring: "Closely monitor for worsening motor symptoms (tremors, bradykinesia, rigidity) and non-motor symptoms (mood changes, cognitive decline, autonomic dysfunction) every 1-2 weeks.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Central Nervous System",
     medicine: "Antipsychotics (Haloperidol, Olanzapine, Risperidone, Quetiapine, Aripiprazole)",
+    keywords: "antipsychotic risperidone olanzapine quetiapine haloperidol aripiprazole risperdal zyprexa seroquel haldol abilify bpsd dementia delirium agitation wandering aggression psychosis behaviour stroke death mortality qtc prolongation tardive dyskinesia akathisia parkinsonism metabolic syndrome",
     when: "No clear indication (e.g. non-primary psychotic illness), adverse effects (Parkinsonism, Lewy body disease, QT prolongation, metabolic effects, stroke risk in dementia), or BPSD managed beyond 12 weeks with stable or resolved symptoms. Particularly urgent in: Parkinson's disease (all except quetiapine and clozapine are contraindicated), Lewy body dementia, or stroke history.",
     how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose formulation reached. Slower tapers (5-10% reductions) for prolonged use or high doses. Ensure BPSD management plan (non-pharmacological strategies) is in place.",
     monitoring: "Monitor psychological (agitation, hallucinations, psychosis) and physical (tardive dyskinesia, akathisia) withdrawal every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly.",
@@ -1190,15 +1221,17 @@ const deprescribingData = [
   {
     category: "Central Nervous System",
     medicine: "Benzodiazepine anxiolytics (Diazepam, Lorazepam, Clonazepam, Alprazolam, Oxazepam)",
-    when: "Long-term use (> 4 weeks) for anxiety or PTSD, as the risk of dependence, falls, sedation, cognitive impairment, and respiratory depression generally outweighs potential benefits (except in special circumstances e.g. terminal sedation). Particularly in age >= 65 (Beers Criteria, STOPP A1).",
-    how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose formulation reached. Consider 5-10% dose reductions for those with history of withdrawal difficulty. For short-acting benzodiazepines (lorazepam, oxazepam, alprazolam): consider switching to equivalent long-acting diazepam before tapering to ease withdrawal. Equivalent doses: diazepam 5mg = lorazepam 0.5mg = oxazepam 15mg = alprazolam 0.25mg.",
+    keywords: "benzodiazepine bzd diazepam valium oxazepam serepax temazepam normison lorazepam ativan alprazolam xanax clonazepam rivotril anxiety insomnia falls confusion fracture gait balance cross-titration withdrawal dependence tolerance rebound short-acting long-acting",
+    when: "Long-term use (> 4 weeks) for anxiety or PTSD, as the risk of dependence, falls, sedation, cognitive impairment, and respiratory depression generally outweighs potential benefits. Particularly in age >= 65 (Beers Criteria, STOPP A1).",
+    how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose formulation reached. Consider 5-10% dose reductions for those with history of withdrawal difficulty. For short-acting benzodiazepines (lorazepam, oxazepam, alprazolam): consider switching to equivalent long-acting diazepam before tapering. Equivalent doses: diazepam 5mg = lorazepam 0.5mg = oxazepam 15mg = alprazolam 0.25mg.",
     monitoring: "Monitor anxiety symptoms, sleep, and health status every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months, then 6-monthly. Benzodiazepine withdrawal symptoms (seizures, tremor, diaphoresis, delirium) - consider inpatient setting for high-dose rapid cessation.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Central Nervous System",
     medicine: "Hypnotics and Sedatives (Z-drugs: Zolpidem, Zopiclone, Temazepam)",
-    when: "Long-term use (> 4 weeks) for insomnia, as the risk of dependence, rebound insomnia, falls, and impaired cognition generally outweighs potential benefits. Temazepam (S8 Schedule 8): requires specialist authority for > 2 months in most Australian jurisdictions. Z-drugs: Beers Criteria - avoid in older adults; associated with MVA risk and complex sleep behaviours.",
+    keywords: "zolpidem stilnox zopiclone imovane temazepam normison z-drug hypnotic sleeping pill insomnia sedative falls cognitive impairment withdrawal rebound sleep architecture cbt-i cbti schedule 8 s8 complex sleep behaviour driving",
+    when: "Long-term use (> 4 weeks) for insomnia, as the risk of dependence, rebound insomnia, falls, and impaired cognition generally outweighs potential benefits. Temazepam (Schedule 8): requires specialist authority for > 2 months in most Australian jurisdictions. Z-drugs: Beers Criteria - avoid in older adults; associated with MVA risk and complex sleep behaviours.",
     how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose formulation reached. Consider smaller dose reductions (5-10%) if high-risk withdrawal. Cognitive Behavioural Therapy for Insomnia (CBT-I) should be initiated concurrently as first-line alternative. Equivalency: temazepam 10mg = zopiclone 3.75mg = zolpidem 5mg.",
     monitoring: "Monitor for withdrawal symptoms (insomnia rebound, anxiety, tremor), worsening sleep quality, and falls every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months. Refer to sleep psychologist for CBT-I if insomnia persists.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
@@ -1206,22 +1239,25 @@ const deprescribingData = [
   {
     category: "Central Nervous System",
     medicine: "SSRIs / SNRIs (Sertraline/Zoloft, Escitalopram/Lexapro, Venlafaxine/Efexor, Fluoxetine/Prozac, Duloxetine/Cymbalta)",
-    when: "Major depressive disorder: sustained clinical remission >= 12 months for first episode; >= 2 years after second episode; >= 3-5 years (consider long-term) for third or subsequent episode. Generalised anxiety disorder: reassess after >= 12 months symptom control. Unclear indication or absent from active problem list. Adverse effects: hyponatraemia/SIADH (elderly risk), sexual dysfunction, GI bleeding (particularly with NSAIDs/anticoagulants), QTc prolongation (citalopram, escitalopram), weight gain (paroxetine), anticholinergic burden (paroxetine > duloxetine).",
-    how: "Use HYPERBOLIC tapering (not linear) to minimise discontinuation syndrome (FINISH: Flu-like, Insomnia, Nausea, Imbalance, Sensory disturbances, Hyperarousal/Anxiety): Sertraline - 200 -> 150 -> 100 -> 75 -> 50 -> 37.5 -> 25 -> 12.5mg -> 0; Escitalopram - 20 -> 15 -> 10 -> 7.5 -> 5 -> 2.5mg -> 0; Venlafaxine XR (highest discontinuation risk) - reduce by 37.5mg every 4 weeks, use 37.5mg capsule for final step; Fluoxetine (long t1/2, fewer discontinuation symptoms) - reduce by 50% every 2-4 weeks. Allow 2-4 weeks at each dose step. Use oral liquid formulation (sertraline solution, fluoxetine liquid 20mg/5mL) or scored tablets for small final dose reductions.",
+    keywords: "ssri snri sertraline zoloft escitalopram lexapro citalopram cipramil fluoxetine prozac paroxetine aropax venlafaxine efexor duloxetine cymbalta antidepressant depression anxiety hyponatremia siadh electric shock sensory paresthesia dizziness nausea discontinuation syndrome finish hyperbolic taper withdrawal",
+    when: "Major depressive disorder: sustained clinical remission >= 12 months for first episode; >= 2 years after second episode; >= 3-5 years (consider long-term) for third or subsequent episode. Generalised anxiety disorder: reassess after >= 12 months symptom control. Unclear indication or absent from active problem list. Adverse effects: hyponatraemia/SIADH (elderly risk), sexual dysfunction, GI bleeding risk with NSAIDs/anticoagulants, QTc prolongation (citalopram, escitalopram), anticholinergic burden (paroxetine > duloxetine).",
+    how: "Use HYPERBOLIC tapering (not linear) to minimise discontinuation syndrome (FINISH: Flu-like, Insomnia, Nausea, Imbalance, Sensory disturbances, Hyperarousal/Anxiety). Sertraline - 200 -> 150 -> 100 -> 75 -> 50 -> 37.5 -> 25 -> 12.5mg -> 0; Escitalopram - 20 -> 15 -> 10 -> 7.5 -> 5 -> 2.5mg -> 0; Venlafaxine XR (highest discontinuation risk) - reduce by 37.5mg every 4 weeks, use 37.5mg capsule for final step; Fluoxetine (long t1/2, fewer discontinuation symptoms) - reduce by 50% every 2-4 weeks. Allow 2-4 weeks at each dose step. Use oral liquid formulation (sertraline solution, fluoxetine liquid 20mg/5mL) for small final dose reductions.",
     monitoring: "PHQ-9 and GAD-7 at each review. Distinguish discontinuation syndrome (FINISH symptoms - onset 2-4 days post-reduction, resolve 2-4 weeks, relieved by restarting) from relapse (onset 2-4 weeks after cessation, progressive, consistent with original presentation). Review every 2 weeks during taper, then monthly for 6 months post-cessation, then 6-monthly. Check serum sodium in elderly (SIADH risk).",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Central Nervous System",
     medicine: "Tricyclic Antidepressants / TCAs (Amitriptyline, Nortriptyline, Doxepin)",
+    keywords: "tca tricyclic amitriptyline endep nortriptyline allegron doxepin antidepressant anticholinergic cognition falls delirium confusion glaucoma urinary retention constipation dry mouth qtc cardiac arrhythmia beers criteria stopp neuropathic pain insomnia headache migraine",
     when: "Potentially inappropriate in adults >= 65 years per Beers Criteria 2023 and STOPP v3 due to high anticholinergic burden. Deprescribe when: used for insomnia, chronic pain, or headache prophylaxis without benefit reassessment; cognitive impairment, delirium, glaucoma, urinary retention, constipation, cardiac arrhythmia, fall risk, or history of postural hypotension; or low dose (amitriptyline 10-25mg) prescribed years ago without reassessment of ongoing need.",
-    how: "Reduce dose by 10-25mg (or half available dose) every 2-4 weeks. Amitriptyline 10mg (lowest PBS dose): reduce to alternate-day dosing for 2 weeks then cease. If originally used as antidepressant: ensure mood stability before tapering; may need to bridge to SSRI first (washout period 2 weeks minimum). Available doses: amitriptyline 10mg, 25mg; nortriptyline 10mg, 25mg.",
+    how: "Reduce dose by 10-25mg (or half available dose) every 2-4 weeks. Amitriptyline 10mg (lowest PBS dose): reduce to alternate-day dosing for 2 weeks then cease. If originally used as antidepressant: ensure mood stability before tapering; may need to bridge to SSRI first. Available doses: amitriptyline 10mg, 25mg; nortriptyline 10mg, 25mg.",
     monitoring: "Monitor for anticholinergic withdrawal (agitation, insomnia, nausea, GI cramps), mood/pain/sleep relapse. ECG if QTc prolongation concern. MMSE/MoCA cognitive assessment before and 4-8 weeks after cessation - may see improvement. Review every 2 weeks during taper, then monthly for 3 months.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Central Nervous System",
-    medicine: "Antidepressants - General (MAOI, Mirtazapine, Agomelatine, Bupropion)",
+    medicine: "Antidepressants - General (Mirtazapine, Agomelatine, Bupropion, MAOIs)",
+    keywords: "mirtazapine remeron agomelatine valdoxan bupropion wellbutrin maoi phenelzine tranylcypromine antidepressant depression anxiety weight gain sedation hepatotoxicity seizure hypertension withdrawal",
     when: "Major depressive disorder with achieved symptomatic remission/clinical stability for 6-12 months for first episode (longer for recurrent depression), or when indication is unclear or unknown. Adverse effects specific to agent: mirtazapine (weight gain, sedation in frail); agomelatine (hepatotoxicity - monitor LFTs); bupropion (seizure risk, hypertension, avoid in eating disorders).",
     how: "Reduce dose by 25% every 1-4 weeks. Cease once half lowest standard dose reached for 1-4 weeks. Use slower tapers (5-10%) for high-dose or prolonged use. Mirtazapine: paradoxically, lower doses are more sedating - plan taper carefully. For MAOIs: specialist supervision required.",
     monitoring: "Monitor for worsening neuropsychiatric symptoms (anxiety, agitation, depression relapse) and withdrawal effects every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months.",
@@ -1230,7 +1266,8 @@ const deprescribingData = [
   {
     category: "Central Nervous System",
     medicine: "Sedating Antihistamines (Promethazine/Phenergan, Doxylamine/Restavit, Diphenhydramine)",
-    when: "Use >= 4 weeks for any indication in adults >= 65 years (Beers Criteria 2023, STOPP v3 - avoid in older adults). Urgent deprescribing if: cognitive impairment/dementia (precipitate delirium), fall risk (sedation, orthostatic hypotension), urinary retention, constipation, dry mouth, glaucoma, or cardiac arrhythmia. Includes OTC combinations: Mersyndol Forte (codeine + paracetamol + doxylamine), Restavit (doxylamine), Phenergan (promethazine). High anticholinergic burden - all contribute to ACB score.",
+    keywords: "antihistamine promethazine phenergan doxylamine restavit diphenhydramine mersyndol sedating anticholinergic acb burden delirium falls insomnia otc over the counter combination sleep nausea hay fever allergy urinary retention glaucoma dry mouth constipation",
+    when: "Use >= 4 weeks for any indication in adults >= 65 years (Beers Criteria 2023, STOPP v3 - avoid in older adults). Urgent deprescribing if: cognitive impairment/dementia (precipitate delirium), fall risk, urinary retention, constipation, dry mouth, glaucoma, or cardiac arrhythmia. Includes OTC combinations: Mersyndol Forte (codeine + paracetamol + doxylamine), Restavit (doxylamine), Phenergan (promethazine).",
     how: "Cease without tapering if use < 4 weeks. For longer use: reduce dosing frequency (nightly -> every 2nd night x 2 weeks -> cease). If used for nausea: address underlying cause; switch to non-anticholinergic antiemetic (metoclopramide, ondansetron) before cessation. If used for insomnia: initiate CBT-I, sleep hygiene measures, or consider low-dose melatonin as bridge.",
     monitoring: "Monitor for anticholinergic withdrawal (agitation, insomnia, GI effects) for 2-4 weeks. MMSE/MoCA 4-8 weeks post-cessation (may show meaningful cognitive improvement). ACB score reassessment (target < 3 total). Falls risk reassessment at 1 month.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
@@ -1238,6 +1275,7 @@ const deprescribingData = [
   {
     category: "Central Nervous System",
     medicine: "Melatonin (Circadin 2mg, Slenyto)",
+    keywords: "melatonin circadin slenyto sleep insomnia circadian rhythm jet lag pbs 55 years prolonged release primary insomnia sleep-wake cycle schedule 4",
     when: "No longer required after stabilisation of sleep-wake cycle, or >= 3 months use without clear ongoing benefit. PBS subsidy (Circadin 2mg prolonged-release): short-term treatment up to 13 weeks for primary insomnia in adults >= 55 years. Non-PBS use: reassess if prescribed off-label for jet lag, anxiety, or other indications without evidence-based review.",
     how: "Reduce dose by 50% every 2-4 weeks then cease. Circadin 2mg -> 1mg (half tablet if uncoated) -> alternate-day dosing -> cease. Minimal withdrawal risk. Implement sleep hygiene, consistent sleep schedule, and appropriate light exposure concurrently.",
     monitoring: "Monitor sleep quality (PSQI or subjective sleep diary), sleep onset latency, and daytime function for 4 weeks post-cessation. Monitor for rebound insomnia. If insomnia returns, reassess contributing factors (pain, nocturia, anxiety, caffeine, poor sleep hygiene, OSA) before re-initiating.",
@@ -1245,8 +1283,9 @@ const deprescribingData = [
   },
   {
     category: "Central Nervous System",
-    medicine: "Anti-dementia medicines (Cholinesterase Inhibitors: Donepezil, Rivastigmine, Galantamine; and Memantine)",
-    when: "Dementias other than Alzheimer's disease, Dementia with Lewy Bodies (DLB), Parkinson's disease dementia (PDD), or vascular dementia. Or: > 12 months without clear functional/cognitive benefit, progression to severe or end-stage dementia where benefit is uncertain, significant side effects (bradycardia, syncope, GI haemorrhage for ChEIs; hallucinations for memantine), or advanced illness/goals of comfort care.",
+    medicine: "Anti-dementia medicines (Donepezil, Rivastigmine, Galantamine, Memantine)",
+    keywords: "donepezil aricept rivastigmine exelon galantamine reminyl memantine ebixa namenda cholinesterase inhibitor dementia alzheimer's lewy body vascular parkinson dementia cognitive decline bpsd bradycardia syncope gi haemorrhage hallucinations",
+    when: "Dementias other than Alzheimer's disease, Dementia with Lewy Bodies (DLB), Parkinson's disease dementia (PDD), or vascular dementia. Or: > 12 months without clear functional/cognitive benefit, progression to severe or end-stage dementia, significant side effects (bradycardia, syncope, GI haemorrhage for ChEIs; hallucinations for memantine), or advanced illness/goals of comfort care.",
     how: "Halve daily dose every 4 weeks. Stop anticholinergics first if patient is on combination therapy (anticholinergics antagonise ChEI mechanism). Cease completely once half lowest standard dose formulation is reached.",
     monitoring: "Monitor for withdrawal and disease exacerbation (agitation, apathy, cognitive decline, reduced ADLs, behavioural disturbance) every 1-2 weeks until 4 weeks post-cessation, then monthly for 3 months. Trial re-introduction if significant decline observed post-cessation.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
@@ -1254,6 +1293,7 @@ const deprescribingData = [
   {
     category: "Respiratory",
     medicine: "Inhaled Corticosteroids / ICS (Fluticasone, Budesonide, Beclomethasone) in COPD",
+    keywords: "inhaled corticosteroid ics fluticasone budesonide beclomethasone copd chronic obstructive pulmonary disease asthma seretide advair symbicort breo flutiform foster exacerbation laba lama triple therapy wisdom spirometry fev1 eosinophil blood eosinophil count",
     when: "Stable COPD on triple therapy (ICS/LABA/LAMA) without: a severe exacerbation requiring hospitalisation in the past 12 months, or >= 2 moderate exacerbations in the past 12 months, or blood eosinophils >= 300 cells/mcL (predictor of ICS benefit). PBS criteria: ICS subsidised in COPD only with LABA/LAMA combination.",
     how: "Discontinue ICS without the need for tapering (supported by WISDOM trial evidence), or use gradual stepwise reduction based on patient preference. Continue dual bronchodilator (LAMA/LABA) maintenance therapy. Do NOT discontinue ICS in asthma patients (rebound deterioration risk).",
     monitoring: "Monitor lung function (spirometry FEV1) 3-6 months post-deprescribing. Monitor symptoms/QoL (CAT score, mMRC dyspnoea scale) every 6 weeks for first 6 months, then exacerbation frequency 6-monthly.",
@@ -1262,6 +1302,7 @@ const deprescribingData = [
   {
     category: "Ophthalmology",
     medicine: "Corticosteroids - topical eye drops (Prednisolone acetate, Dexamethasone eye drops)",
+    keywords: "prednisolone eye drops dexamethasone uveitis post-operative post-surgical topical steroid iop intraocular pressure steroid-induced glaucoma cataract rebound inflammation",
     when: "Used for > 6-8 weeks with symptoms resolved, stable, and unlikely to recur (e.g. post-operative healing, resolved anterior uveitis).",
     how: "Short-term (< 3 weeks): no taper. >= 3 weeks: reduce dosing frequency weekly. > 3 months/refractory: reduce frequency every 2-4 weeks (reduce frequency, not number of drops per administration).",
     monitoring: "Close monitoring by ophthalmologist/optometrist for rebound intraocular inflammation and IOP elevation 2-4 weeks after discontinuing. Monitor for steroid-induced glaucoma.",
@@ -1269,15 +1310,17 @@ const deprescribingData = [
   },
   {
     category: "Ophthalmology",
-    medicine: "Antiglaucoma preparations and miotics (Latanoprost, Timolol, Dorzolamide, Bimatoprost)",
-    when: "When the extent of glaucoma progression after treatment discontinuation is unlikely to impact quality of life in their lifetime (advanced frailty, limited life expectancy).",
-    how: "Cease anti-glaucoma preparations without the need for tapering.",
-    monitoring: "Monitor intraocular pressure and signs of optic nerve progression for 2-8 weeks post-discontinuation, then 3-6 monthly in the first year. Ophthalmologist review.",
+    medicine: "Antiglaucoma preparations (Latanoprost, Timolol, Brimonidine, Dorzolamide, Bimatoprost)",
+    keywords: "glaucoma eye drops topical latanoprost xalatan timolol betoptic brimonidine alphagan dorzolamide trusopt bimatoprost lumigan travoprost travatan vision blindness intraocular pressure iop dry eye toxicity washout palliative bradycardia heart rate",
+    when: "When the extent of glaucoma progression after treatment discontinuation is unlikely to impact quality of life in their lifetime (advanced frailty, limited life expectancy). Also if severe local ocular dry eye syndrome or physical inability to self-administer.",
+    how: "Discontinue one eye drop class at a time under clinical supervision. If on complex multi-drop therapy, stop least effective drops or drops causing maximum toxicity (e.g. beta-blockers causing systemic bradycardia) first. Cease without tapering.",
+    monitoring: "Monitor intraocular pressure (IOP) and signs of optic nerve progression 2-8 weeks post-discontinuation, then 3-6 monthly in first year. Monitor systemic parameters (e.g. heart rate improvement after stopping topical timolol). Ophthalmologist review.",
     evidence: "CBR (Consensus-Based Recommendation) & GPS (Good Practice Statement) – Deprescribing in Older People: A clinical practice guideline (2025)."
   },
   {
     category: "Ophthalmology",
-    medicine: "Ocular lubricants / Dry eye preparations (Hypromellose, Carbomer, Sodium hyaluronate eye drops)",
+    medicine: "Ocular lubricants / Dry eye preparations (Hypromellose, Carbomer, Sodium hyaluronate)",
+    keywords: "artificial tears dry eye hypromellose carbomer sodium hyaluronate lubricant viscotears systane tears refresh lacri-lube drug-induced dry eye anticholinergic",
     when: "Symptoms have resolved, are stable, and are unlikely to recur, particularly if an avoidable risk factor (e.g. drug-induced dry eyes from anticholinergics, antihistamines) has been addressed.",
     how: "Gradually taper doses before ceasing if > daily administration (e.g. BD or TDS), then switch to PRN use.",
     monitoring: "Ongoing monitoring for dry eyes, redness, and discomfort for 3-6 months after deprescribing.",
@@ -1781,7 +1824,7 @@ function searchMedicines(query) {
   const terms = query.trim().toLowerCase().replace(/\s+/g, ' ').split(' ').filter(t => t.length >= 2);
   if (terms.length === 0) return [];
   return deprescribingData.filter(d => {
-    const haystack = [d.medicine || '', d.category || '', d.when || '', d.how || '', d.monitoring || '', d.evidence || ''].join(' ').toLowerCase();
+    const haystack = [d.medicine||'',d.category||'',d.keywords||'',d.when||'',d.how||'',d.monitoring||'',d.evidence||''].join(' ').toLowerCase();
     return terms.every(term => haystack.includes(term));
   });
 }
